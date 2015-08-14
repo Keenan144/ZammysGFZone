@@ -1,5 +1,24 @@
 Rails.application.routes.draw do
+
+
   root 'static_pages#home'
+  get 'signup'  => 'users#new'
+  get 'logout'  => 'sessions#destroy'
+  get    'login'   => 'sessions#new'
+  post   'login'   => 'sessions#create'
+  delete 'logout'  => 'sessions#destroy'
+
+
+  resources :food_categories
+  resources :blog_posts
+  resources :user_posts
+  resources :comments
+  resources :replies
+  resources :recipes
+  resources :restaurants
+  resources :fast_foods
+  resources :foods
+  resources :users
   resources :static_pages
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

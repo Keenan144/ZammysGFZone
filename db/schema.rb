@@ -11,14 +11,114 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150813223925) do
+ActiveRecord::Schema.define(version: 20150814203419) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "blog_posts", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "site_url"
+    t.string   "title"
+    t.datetime "date"
+    t.integer  "votes"
+    t.text     "blog_content"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "user_post_id"
+    t.integer  "blog_post_id"
+    t.string   "title"
+    t.datetime "date"
+    t.integer  "votes"
+    t.text     "comment"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  create_table "fast_foods", force: :cascade do |t|
+    t.integer  "amount_of_gf_items"
+    t.string   "confirmed_gf"
+    t.integer  "expensive_rating"
+    t.integer  "taste_rating"
+    t.string   "location"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  create_table "food_categories", force: :cascade do |t|
+    t.string   "category_name"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  create_table "foods", force: :cascade do |t|
+    t.string   "type"
+    t.string   "confirmed_gf"
+    t.integer  "price"
+    t.integer  "taste"
+    t.integer  "difficulty"
+    t.string   "where_to_find"
+    t.integer  "rating"
+    t.integer  "views"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  create_table "recipes", force: :cascade do |t|
+    t.integer  "difficulty"
+    t.integer  "time"
+    t.integer  "taste_rating"
+    t.string   "confirmed_gf"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  create_table "replies", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "comment_id"
+    t.text     "reply"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "restaurants", force: :cascade do |t|
+    t.integer  "amount_of_gf_items"
+    t.string   "confirmed_gf"
+    t.integer  "expensive_rating"
+    t.integer  "taste_rating"
+    t.string   "location"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
   create_table "static_pages", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "user_posts", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "blog_post_id"
+    t.string   "title"
+    t.datetime "date"
+    t.integer  "votes"
+    t.text     "post_content"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "username"
+    t.string   "password_digest"
+    t.string   "remember_digest"
+    t.datetime "last_login"
+    t.integer  "login_count",     default: 0
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
 end

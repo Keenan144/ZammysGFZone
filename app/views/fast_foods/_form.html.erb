@@ -1,0 +1,17 @@
+<%= form_for(@fast_food) do |f| %>
+  <% if @fast_food.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@fast_food.errors.count, "error") %> prohibited this fast_food from being saved:</h2>
+
+      <ul>
+      <% @fast_food.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
