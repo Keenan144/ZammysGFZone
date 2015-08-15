@@ -19,6 +19,10 @@ class StaticPagesController < ApplicationController
 
   end
 
+  def admin
+
+  end
+
   # GET /static_pages/1
   # GET /static_pages/1.json
   def show

@@ -1,0 +1,28 @@
+
+<div class="top-user-show">
+</div>
+
+<br><br><br><br>
+<br><br><br><br>
+<br><br><br><br>
+<div class="containter-fluid">
+
+
+<%= link_to 'New Blog Post', new_blog_post_path%><br>
+<%= link_to 'New Food Item', new_food_path %><br>
+<%= link_to 'New Recipe', new_recipe_path%><br>
+<%= link_to 'New Fast Food Place', new_fast_food_path%><br>
+<%= link_to 'New Restaurant Place', new_restaurant_path%><br>
+<%= link_to 'Edit User Posts', user_posts_path%><br>
+<br><br>
+meterics 
+<h3>Users</h3>
+<p>total: <%= User.count %></p>
+<p>Latest logins: <% User.order(:last_login).last(10).each do |session| %></p>
+  <h6><%= session.username %></h6>
+  <p><%=session.login_count%></p>
+  <br>
+  <% end %>
+<br>
+
+</div>

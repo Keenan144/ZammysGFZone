@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
   get '/about' => 'static_pages#about'
   get '/contact' => 'static_pages#contact'
+  get '/admin' => 'static_pages#admin'
 
   resources :food_categories
   resources :blog_posts
