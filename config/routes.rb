@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   delete 'logout'  => 'sessions#destroy'
 
 
+  get '/about' => 'static_pages#about'
+  get '/contact' => 'static_pages#contact'
+
   resources :food_categories
   resources :blog_posts
   resources :user_posts

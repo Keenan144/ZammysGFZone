@@ -1,0 +1,66 @@
+<!-- begin:content -->
+<div class="top-user-show">
+</div>
+
+<section id="content">
+  <div class="container">
+    <div class="row">
+        <!-- begin:article -->
+        <div class="col-md-8 col-sm-8">
+            <div class="featured-container">
+              image here
+            </div>
+            <br>
+            <div class="heading-title">
+                <h2>Zambrina.</h2>
+            </div>
+            <p> Hello I am Zambrina, but you can call me Zam. With help from my son, I have started this blog to help the gluten free community. My son was diagnosed with celiac disease a few years ago. With his diagnosis came very strict dietary guidelines. Thus cooking delicious food seemed impossible! And there were not many gluten free recipes on the web yet, so I will share with you what I have found. And maybe you can share this with your friends or people who may need it, so that together we can <strong>share</strong> - <strong>love</strong> - and <strong>eat</strong>.</p>
+            <p>Please note, I am not a doctor or a dietary specialist. By no way am I implying that anything on this site is 100% safe for everyone. Please double check ingredients before you <strong>share</strong> - <strong>love</strong> - and <strong>eat</strong> any and all foods. I am only a mother, providing the best food I can for my Gluten Free son.</p>
+        </div>
+        <!-- end:article -->
+
+        <!-- begin:sidebar -->
+        <div class="col-md-4 col-sm-4 sidebar">
+<!--             <div class="widget-sidebar">
+                <h3>Search</h3>
+                <form id="search" class="navbar-form search" role="search">
+                    <input type="search" class="form-control input-lg" placeholder="Type your keyword">
+                    <button type="submit" class="btn btn-danish btn-search"><i class="fa fa-arrow-right"></i></button>
+                </form>
+            </div> -->
+
+            <div class="widget-sidebar">
+              <h3>Categories</h3>
+              <ul>
+                <li><%= link_to 'Blog Posts', blog_posts_path%></li>
+                <li><%= link_to 'User Posts', user_posts_path%></li>
+                <li><%= link_to 'Food Categories', food_categories_path%></li>
+                <li><%= link_to 'Foods', foods_path%></li>
+                <% if current_user == nil %>
+                <li><a href="/login"><i class="fa fa-sign-in"></i> Login</a>
+                <% else %>
+                <li><%= link_to 'Profile', user_path(current_user) %></li>
+                  <% if current_user.admin == "125905" %>
+                  <li><a href="/admin"><i class="fa fa-book"></i> Admin</a></li>
+                  <% end %>
+                </li>
+                <% end %>
+              </ul>
+            </div>
+
+            <div class="widget-sidebar">
+              <h3>Archives</h3>
+              <ul>
+                <li><a href="#">August 2015</a> (0)</li>
+                <li><a href="#">July 2015</a> (0)</li>
+                <li><a href="#">June 2015</a> (0)</li>
+              </ul>
+            </div>
+            
+        </div>
+        <!-- end:sidebar -->
+        
+    </div>
+  </div>
+</section>
+<!-- end:content -->
