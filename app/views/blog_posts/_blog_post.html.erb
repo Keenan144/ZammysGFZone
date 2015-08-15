@@ -1,0 +1,27 @@
+<div class="col-md-4 col-sm-6">
+  <div class="post-container">
+      <div class="post-content no-padding blog-post-image">
+        <%= link_to image_tag("image-portfolio-02.jpg", :border => 0), blog_post_path(blog_post) %>
+
+      </div>
+      <div class="post-content">
+          <p class="blog-post-content"><%= blog_post.blog_content %></p>
+      <div class="post-link">
+          <a href="/blog_posts/<%= blog_post.id %>"><span>Read more</span></a>
+      </div>
+      </div>
+      <div class="post-atribut">
+          <div class="row">
+              <div class="col-md-4 col-sm-4 col-xs-4">
+                  <a href="/blog_posts/<%= blog_post.id %>"><span><i class="fa fa-heart"></i>  <%= blog_post.votes %></span></a>
+              </div>
+              <div class="col-md-4 col-sm-4 col-xs-4">
+                  <a href="/blog_posts/<%= blog_post.id %>"><span><i class="fa fa-comments"></i>  <%= blog_post.comments.count %></span></a>
+              </div>
+              <div class="col-md-4 col-sm-4 col-xs-4">
+                  <a href="/blog_posts/<%= blog_post.id %>"><span><i class="fa fa-eye"></i>  <%= blog_post.id %></span></a>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>

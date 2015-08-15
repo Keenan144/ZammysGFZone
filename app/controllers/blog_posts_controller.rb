@@ -4,12 +4,17 @@ class BlogPostsController < ApplicationController
   # GET /blog_posts
   # GET /blog_posts.json
   def index
-    @blog_posts = BlogPost.all
+    @blog_posts = BlogPost.paginate(page: params[:page])
   end
 
   # GET /blog_posts/1
   # GET /blog_posts/1.json
   def show
+    @blog_post = BlogPost.find_by(id: params[:format])
+    if @blog_post == nil 
+      @blog_post = BlogPost.find(params[:id])
+    end
+
   end
 
   # GET /blog_posts/new
@@ -69,6 +74,6 @@ class BlogPostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def blog_post_params
-      params[:blog_post]
+      params[:blog_post].permit(:title, :site_url, :blog_content, :user_id, :votes )
     end
 end
