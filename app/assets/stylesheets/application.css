@@ -20,6 +20,9 @@
  *= require responsive
  *= require_self
  */
+#header {
+  background: url('../img/IMG_2946.jpg');
+}
 
 .featured-img {
   max-height: 180px;
@@ -37,8 +40,38 @@
   color: red;
 }
 .overlay {
-  background-color: rgba(250,0,0,0.2);
+
 }
 .navbar-default {
   background-color: transparent;
+}
+.login-container {
+  max-width: 400px;
+  min-width: 250px;
+}
+.checkbox {
+  margin-left: 18px;
+}
+.login-button {
+  width: 100px;
+  position: relative;
+  margin-right: 50%;
+  margin-left: 38%;
+}
+.sign-up-button {
+  width: 150px;
+  position: relative;
+  margin-right: 50%;
+  margin-left: 38%;
+}
+.body {
+  min-height: 500px;
+}
+.top-user-show {
+  height: 20%;
+  max-height: 200px;
+  min-height: 100px;
+  background-color: black;
+  margin-top: -10px;
+  width: 100%;
 }

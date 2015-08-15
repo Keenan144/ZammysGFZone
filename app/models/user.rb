@@ -1,9 +1,12 @@
 class User < ActiveRecord::Base
   attr_accessor :remember_token
 
-  has_many :comments, :user_posts, :blog_posts, :replys, :recipes
+  has_many :comments
+  has_many :user_posts
+  has_many :blog_posts
+  has_many :replys
+  has_many :recipes
 
-  before_save { email.downcase! }
   validates :username, presence: true, length: { maximum: 50 }
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true

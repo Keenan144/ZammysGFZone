@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+
 
   # GET /users
   # GET /users.json
@@ -10,6 +10,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    @user = User.find(current_user.id)
   end
 
   # GET /users/new
@@ -19,7 +20,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    @user.update(login: DateTime.now)
+    @user.update(last_login: DateTime.now)
     @user.update(login_count: @user.login_count += 1)
 
 

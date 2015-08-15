@@ -12,5 +12,15 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
-//= require_tree .
+// require turbolinks
+// require_tree .
+//= require bootstrap
+//= require html5shiv
+//= require script
+//= require respond.min
+//= require jquery.parallax
+//= require jquery.isotope.min
+//= require gmap3.min
+//= require imagesloaded.pkgd.min
+
+
