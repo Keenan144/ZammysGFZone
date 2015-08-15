@@ -72,5 +72,27 @@
              </table>
           </div>
         </div>
+
+        <div class="col-md-10">
+        <h2 class="sub-header">Site Metrics</h2>
+          <div class="table-responsive">
+            <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Site Visits</th>
+                <th>About Page Visits</th>
+                <th>Total Logins</th>
+                <th>Site Errors</th>
+              </tr>
+            </thead>
+              <tr>
+                <td><%= SystemMetric.first.site_visits %></td>
+                <td><%= SystemMetric.first.about_views %></td>
+                <td><%= SystemMetric.first.logins %></td>
+                <td><%= SystemMetric.first.site_errors %></td>
+              </tr>
+             </table>
+          </div>
+        </div>
   </div>
 </div>

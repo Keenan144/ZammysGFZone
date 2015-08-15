@@ -6,11 +6,14 @@ class StaticPagesController < ApplicationController
   end
 
   def home
-    @blog_posts = BlogPost.paginate(page: params[:page])
+    @blog_posts = BlogPost.paginate(page: params[:page], per_page: 5)
+    views = SystemMetric.first.site_visits
+    SystemMetric.first.update(site_visits: views + 1)
   end
 
   def about
-
+    views = SystemMetric.first.about_views
+    SystemMetric.first.update(about_views: views + 1)
   end
 
   def contact

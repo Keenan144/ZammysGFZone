@@ -60,13 +60,15 @@
               </div>
             </div>
 
-            <%= render @blog_posts.reverse %>
-            <%= will_paginate @blog_posts %>
+            <%= render @blog_posts.order(:id).reverse %>
          
         </div> 
         <!-- end:article -->
       </div>
     </section>
+    <div class="pager">
+        <%= will_paginate @blog_posts %>
+    </div>
     <!-- end:content -->
 
     <!-- begin:portfolio -->

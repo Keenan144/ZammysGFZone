@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150815191013) do
+ActiveRecord::Schema.define(version: 20150815221248) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20150815191013) do
     t.text     "blog_content"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.integer  "views"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -102,6 +103,16 @@ ActiveRecord::Schema.define(version: 20150815191013) do
   create_table "static_pages", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "system_metrics", force: :cascade do |t|
+    t.integer "site_visits",     default: 1
+    t.integer "site_errors",     default: 0
+    t.integer "about_views",     default: 1
+    t.integer "logins",          default: 1
+    t.integer "breakfast_views", default: 1
+    t.integer "lunch_views",     default: 1
+    t.integer "dinner_views",    default: 1
   end
 
   create_table "user_posts", force: :cascade do |t|

@@ -12,6 +12,9 @@ class SessionsController < ApplicationController
       user.update(login_count: user.login_count += 1)
       params[:session][:remember_me] == '1' ? remember(user) : forget(user)
       redirect_back_or user
+
+      views = SystemMetric.first.logins
+     SystemMetric.first.update(logins: views + 1)
     else
       p "!" * 1000
       flash.now[:danger] = 'Invalid email/password combination'
