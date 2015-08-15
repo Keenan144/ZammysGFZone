@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   has_many :replys
   has_many :recipes
 
-  validates :username, presence: true, length: { maximum: 50 }
+  validates :username, presence: true, uniqueness: true
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
 

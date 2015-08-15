@@ -11,7 +11,26 @@
     </div>
   <% end %>
 
-  <div class="actions">
-    <%= f.submit %>
+<div class="row white-text">
+  <div class="col-md-6 col-md-offset-3">
+      <%= render 'shared/error_messages' %>
+
+      <%= f.label :title %>
+      <%= f.text_field :title, class: 'form-control' %>
+
+      <%= f.label :site_url %>?
+      <%= f.text_field :site_url, class: 'form-control' %>
+
+      <%= f.label :blog_content %>
+      <%= f.text_area :blog_content, cols: "97", rows: "10" %>
+      <br>
+
+      <%= f.hidden_field :user_id, :value => current_user.id %>
+      <%= f.hidden_field :votes, :value => 1 %>
+
+      <div class="create-account">
+      <%= f.submit "Create Blog", class: "btn btn-success sign-up-button" %>
+    </div>
   </div>
+</div>
 <% end %>

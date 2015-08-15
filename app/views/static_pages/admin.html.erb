@@ -1,28 +1,76 @@
 
 <div class="top-user-show">
 </div>
-
-<br><br><br><br>
-<br><br><br><br>
-<br><br><br><br>
-<div class="containter-fluid">
-
-
-<%= link_to 'New Blog Post', new_blog_post_path%><br>
-<%= link_to 'New Food Item', new_food_path %><br>
-<%= link_to 'New Recipe', new_recipe_path%><br>
-<%= link_to 'New Fast Food Place', new_fast_food_path%><br>
-<%= link_to 'New Restaurant Place', new_restaurant_path%><br>
-<%= link_to 'Edit User Posts', user_posts_path%><br>
-<br><br>
-meterics 
-<h3>Users</h3>
-<p>total: <%= User.count %></p>
-<p>Latest logins: <% User.order(:last_login).last(10).each do |session| %></p>
-  <h6><%= session.username %></h6>
-  <p><%=session.login_count%></p>
-  <br>
-  <% end %>
+<br>
 <br>
 
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-8 col-md-2 sidebar">
+      <br>
+      <!-- ^^ cheap spacer -->
+      <ul class="nav nav-sidebar">
+        <li><%= link_to 'New Blog Post', new_blog_post_path%></li>
+        <li><%= link_to 'New Food Item', new_food_path %></li>
+        <li><%= link_to 'New Recipe', new_recipe_path%></li>
+        <li><%= link_to 'New Fast Food Place', new_fast_food_path%></li>
+        <li><%= link_to 'New Restaurant Place', new_restaurant_path%></li>
+        <li><%= link_to 'Edit User Posts', user_posts_path%></li>
+
+      </ul>
+    </div>
+    <div class="col-md-10">
+      <h2 class="sub-header">Last Logins</h2>
+        <div class="table-responsive">
+          <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>User</th>
+              <th>Last Login</th>
+            </tr>
+          </thead>
+            <% User.order(:last_login).last(10).reverse.each do |user| %>
+                <tr>
+                  <td><%= user.username %></td>
+                  <% if user.last_login %>
+                    <% time = Time.parse(user.last_login.to_s) %>
+                    <td><%= time.in_time_zone("Pacific Time (US & Canada)").strftime('%D %r') %></td>
+                  <% else %>
+                    <td> / </td>
+                  <% end %>
+                </tr>
+              <% end %>
+           </table>
+        </div>
+      </div>
+      <div class="col-md-10">
+        <h2 class="sub-header">Totals</h2>
+          <div class="table-responsive">
+            <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Users</th>
+                <th>Blog Posts</th>
+                <th>User Posts</th>
+                <th>Comments</th>
+                <th>Replies</th>
+                <th>Foods</th>
+                <th>Restaurants</th>
+                <th>Fast Foods</th>
+              </tr>
+            </thead>
+              <tr>
+                <td><%= User.count %></td>
+                <td><%= BlogPost.count %></td>
+                <td><%= UserPost.count %></td>
+                <td><%= Comment.count %></td>
+                <td><%= Reply.count %></td>
+                <td><%= Food.count %></td>
+                <td><%= Restaurant.count %></td>
+                <td><%= FastFood.count %></td>
+              </tr>
+             </table>
+          </div>
+        </div>
+  </div>
 </div>
