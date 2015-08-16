@@ -85,7 +85,8 @@
   overflow: hidden;
 }
 .blog-post-image {
-  max-height: 200px;
+  height: 200px;
+  overflow: hidden;
 }
 .fa-star {
   color: gold;
