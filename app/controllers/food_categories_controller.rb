@@ -7,6 +7,18 @@ class FoodCategoriesController < ApplicationController
     @food_categories = FoodCategory.all
   end
 
+  def breakfast
+    @foods = Food.where(food_category_id: 1)
+  end
+
+  def lunch
+    @foods = Food.where(food_category_id: 2)
+  end
+
+  def dinner
+    @foods = Food.where(food_category_id: 3)
+  end
+
   # GET /food_categories/1
   # GET /food_categories/1.json
   def show

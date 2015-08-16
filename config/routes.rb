@@ -13,6 +13,23 @@ Rails.application.routes.draw do
   get '/contact' => 'static_pages#contact'
   get '/admin' => 'static_pages#admin'
 
+  get '/breakfast' => 'food_categories#breakfast'
+  get '/lunch' => 'food_categories#lunch'
+  get '/dinner' => 'food_categories#dinner'
+
+  get '/breakfast/food_items' => 'foods#breakfast_food_items'
+  get '/breakfast/recipes' => 'recipes#breakfast_recipes'
+  get '/breakfast/snacks' => 'foods#breakfast_food_items'
+
+  get '/lunch/food_items' => 'foods#lunch_food_items'
+  get '/lunch/recipes' => 'recipes#lunch_recipes'
+  get '/lunch/snacks' => 'foods#lunch_food_items'
+
+  get '/dinner/food_items' => 'foods#dinner_food_items'
+  get '/dinner/recipes' => 'recipes#dinner_recipes'
+  get '/dinner/snacks' => 'foods#dinner_food_items'
+
+
   resources :food_categories
   resources :blog_posts
   resources :user_posts

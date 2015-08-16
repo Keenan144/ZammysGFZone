@@ -1,3 +1,6 @@
+<div class="top-user-show">
+</div>
+
 <%= form_for(@food) do |f| %>
   <% if @food.errors.any? %>
     <div id="error_explanation">
@@ -11,9 +14,42 @@
     </div>
   <% end %>
 
+<br><br>
+<br><br><br><br>
+<div class="row white-text">
+  <div class="col-md-6 col-md-offset-3">
+      <%= render 'shared/error_messages' %>
 
-<% end %>
-  <div class="actions">
-    <%= f.submit %>
+      <%= f.label :name %>
+      <%= f.text_field :name, class: 'form-control'%>
+
+      <%= f.label :confirmed_gf %>
+      <%= f.text_field :confirmed_gf, class: 'form-control' %>
+
+      <%= f.label :price %>
+      <%= f.text_field :price, class: 'form-control' %>
+
+      <%= f.label :taste %>
+      <%= f.text_field :taste, class: 'form-control' %>
+
+      <%= f.label :difficulty %>
+      <%= f.text_field :difficulty, class: 'form-control' %>
+
+      <%= f.label :where_to_find %>
+      <%= f.text_field :where_to_find, class: 'form-control' %>
+
+      1)breakfast, 2)lunch, 3)dinner
+      <%= f.label :food_category_id %>
+      <%= f.text_field :food_category_id, class: 'form-control' %>
+
+
+      <br>
+      <div class="create-account">
+      <%= f.submit "Create my account", class: "btn btn-primary sign-up-button" %>
+    </div>
   </div>
+</div>
+<br><br><br><br>
+<br><br><br><br>
+<br><br><br><br>
 <% end %>

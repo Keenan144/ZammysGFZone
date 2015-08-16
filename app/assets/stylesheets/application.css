@@ -87,4 +87,10 @@
 .blog-post-image {
   max-height: 200px;
 }
+.fa-star {
+  color: gold;
+}
+.fa-exclamation {
+  color: red;
+}
 

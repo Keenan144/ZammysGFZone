@@ -1,0 +1,19 @@
+<% if food == nil %>
+<% food = @food %>
+<% end %>
+
+Name: <%= food.name %><br>
+Confirmed Gluten Free<%= food.confirmed_gf %><br>
+Price I pay: $<%= food.price %><br>
+Taste rating <% food.taste.to_i.times do |star| %>
+<i class="fa fa-star"></i> 
+<% end %><br>
+Difficulty to cook <% food.difficulty.to_i.times do |star| %>
+<i class="fa fa-exclamation"></i> 
+<% end %><br>
+Where I buy it: <%= food.where_to_find %><br>
+Category of food: <%= FoodCategory.find(food.food_category_id).category_name %><br>
+
+<br><br>
+<hr>
+<br><br>

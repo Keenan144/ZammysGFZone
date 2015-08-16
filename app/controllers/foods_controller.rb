@@ -17,6 +17,42 @@ class FoodsController < ApplicationController
     @food = Food.new
   end
 
+  def breakfast_food_items
+    foods = Food.where(food_category_id: 1)
+    @foods = foods.paginate(page: params[:page], per_page: 6)
+  end
+
+  def lunch_snacks
+  end
+
+
+  def lunch_food_items
+    foods = Food.where(food_category_id: 2)
+    @foods = foods.paginate(page: params[:page], per_page: 6)
+  end
+
+  def lunch_snacks
+  end
+
+
+  def dinner_food_items
+    foods = Food.where(food_category_id: 3)
+    @foods = foods.paginate(page: params[:page], per_page: 6)
+  end
+
+  def dinner_snacks
+  end
+
+
+
+
+
+
+
+
+
+
+
   # GET /foods/1/edit
   def edit
   end
@@ -69,6 +105,6 @@ class FoodsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def food_params
-      params[:food]
+      params[:food].permit(:name, :confirmed_gf, :price, :taste, :difficulty, :where_to_find, :food_category_id)
     end
 end
