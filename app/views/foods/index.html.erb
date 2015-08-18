@@ -1,6 +1,37 @@
-<p id="notice"><%= notice %></p>
+<div class="top-user-show">
+</div>
+<div id="featured">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 col-sm-4">
+        <div class="featured-container">
+          <div class="featured-img">
+            <img class="feat-img" src="img/Gluten-free-pancakes.jpg" alt="">
+            <h3 class="feat-img-text"><a href="/breakfast/food_items">Breakfast / Food Items</a></h3>
+          </div>
+        </div>
+      </div>
+    <div class="col-md-4 col-sm-4">
+      <div class="featured-container">
+        <div class="featured-img">
+          <img class="feat-img" src="img/lunch-1.jpg" alt="">
+          <h3 class="feat-img-text"><a href="/lunch/food_items">Lunch / Food Items</a></h3>
+        </div>
+      </div>
+    </div>
+      <div class="col-md-4 col-sm-4">
+        <div class="featured-container">
+          <div class="featured-img">
+            <img class="feat-img" src="img/dinner-1.jpg" alt="">
+            <h3 class="feat-img-text"><a href="/dinner/food_items">Dinner / Food Items</a></h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-<h1>Listing Foods</h1>
+
 
 <table>
   <thead>
@@ -12,9 +43,13 @@
   <tbody>
     <% @foods.each do |food| %>
       <tr>
+        <% if current_user %>
+        <% if current_user.admin == "125905" %>
         <td><%= link_to 'Show', food %></td>
         <td><%= link_to 'Edit', edit_food_path(food) %></td>
         <td><%= link_to 'Destroy', food, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+         <% end %>
+          <% end %>
       </tr>
     <% end %>
   </tbody>
@@ -22,4 +57,8 @@
 
 <br>
 
+<% if current_user %>
+<% if current_user.admin == "125905" %>
 <%= link_to 'New Food', new_food_path %>
+ <% end %>
+<% end %>

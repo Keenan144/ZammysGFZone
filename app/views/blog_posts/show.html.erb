@@ -7,8 +7,9 @@
 <p><%= @blog_post.blog_content %></p>
 
 <h1> hello </h1>
-
+<% if current_user %>
 <% if current_user.admin == "125905" %>
 <%= link_to 'Edit', edit_blog_post_path(@blog_post) %>
 
+<% end %>
 <% end %>

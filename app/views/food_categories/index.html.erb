@@ -1,6 +1,6 @@
-<p id="notice"><%= notice %></p>
+<div class="top-user-show">
+</div>
 
-<h1>Listing Food Categories</h1>
 
 <table>
   <thead>
@@ -9,17 +9,54 @@
     </tr>
   </thead>
 
+  <%= render '/static_pages/featured'%>
+<div id="featured">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 col-sm-4">
+        <div class="featured-container">
+          <div class="featured-img">
+            <img class="feat-img" src="img/Gluten-free-pancakes.jpg" alt="">
+            <h3 class="feat-img-text"><a href="#">Treats / Scacks</a></h3>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-4">
+        <div class="featured-container">
+          <div class="featured-img">
+            <img class="feat-img" src="img/lunch-1.jpg" alt="">
+            <h3><a href="#">Drinks / Adult Drinks</a></h3>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-4">
+        <div class="featured-container">
+          <div class="featured-img">
+            <img class="feat-img" src="img/dinner-1.jpg" alt="">
+            <h3><a href="#">Misc</a></h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
   <tbody>
     <% @food_categories.each do |food_category| %>
       <tr>
+        <% if current_user %>
+        <% if current_user.admin == "125905" %>
         <td><%= link_to 'Show', food_category %></td>
         <td><%= link_to 'Edit', edit_food_category_path(food_category) %></td>
         <td><%= link_to 'Destroy', food_category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
+<% if current_user %>
+<% if current_user.admin == "125905" %>
 <%= link_to 'New Food category', new_food_category_path %>
+<% end %>
+<% end %>

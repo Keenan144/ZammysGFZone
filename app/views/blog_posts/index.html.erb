@@ -12,12 +12,14 @@
   </thead>
 
   <tbody>
-    <% @blog_posts.each do |blog_post| %>
+    <% @blog_posts.reverse.each do |blog_post| %>
       <tr>
         <td><h3><%= link_to blog_post.title, blog_post %></h3></td>
+        <% if current_user %>
         <% if current_user.admin == "125905" %>
         <td><%= link_to 'Edit', edit_blog_post_path(blog_post) %> - | - </td>
         <td><%= link_to 'Destroy', blog_post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
         <% end %>
       </tr>
     <% end %>
@@ -25,6 +27,8 @@
 </table>
 
 <br>
+<% if current_user %>
 <% if current_user.admin == "125905" %>
 <%= link_to 'New Blog post', new_blog_post_path %>
+<% end %>
 <% end %>
