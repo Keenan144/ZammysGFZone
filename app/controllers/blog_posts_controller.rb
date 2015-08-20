@@ -14,7 +14,8 @@ class BlogPostsController < ApplicationController
     if @blog_post == nil 
       @blog_post = BlogPost.find(params[:id])
     end
-    @blog_post.update(views: 1)
+    views = @blog_post.views
+    @blog_post.update(views: views + 1)
   end
 
   # GET /blog_posts/new

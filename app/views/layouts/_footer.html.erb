@@ -4,13 +4,11 @@
       <div class="row">
           <div class="col-md-3 col-sm-3">
               <div class="widget">
-                  <h3>Recent Post</h3>
+                  <h3>Recent Recipes</h3>
                   <ul class="list-unstyled">
+                    <% Recipe.last(5).each do |recipe| %>
                       <li><a href="#">Lorem ipsum</a></li>
-                      <li><a href="#">Lorem</a></li>
-                      <li><a href="#">Lorem ipsum dolor</a></li>
-                      <li><a href="#">Lorem sit</a></li>
-                      <li><a href="#">Lorem dolor sit</a></li>
+                    <% end %>
                   </ul>
               </div>
           </div>
@@ -18,11 +16,11 @@
               <div class="widget">
                   <h3>Useful Links</h3>
                   <ul class="list-unstyled">
-                      <li><a href="#">Lorem sit</a></li>
-                      <li><a href="#">Lorem dolor sit</a></li>
-                      <li><a href="#">Home</a></li>
-                      <li><a href="#">About</a></li>
-                      <li><a href="#">Contact</a></li>
+                      <li><a href="https://www.facebook.com/groups/Celiacdiseasesupport/?__mref=message_bubble">Facebook Celiac Support Group</a></li>
+                      <li><a href="https://www.facebook.com/pages/Not-Your-Sugar-Mamas/124736810944378?__mref=message_bubble">Not Your Sugar Mamas Facebook Page</a></li>
+                      <li><a href="/">Home</a></li>
+                      <li><a href="/about">About</a></li>
+                      <li><a href="/contact">Contact</a></li>
                   </ul>
               </div>
           </div>

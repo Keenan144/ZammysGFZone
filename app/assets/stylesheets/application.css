@@ -84,9 +84,32 @@
   max-height: 200px;
   overflow: hidden;
 }
+.blog-content {
+  min-height: 300px;
+
+}
+.blog-container{
+  margin-top: 50px;
+  min-width: 200px;
+  max-width: 500px;
+  min-height: 400px;
+  border: 1px solid grey;
+}
+.blog-post-details{
+  margin-left: 50px;
+}
+.blog-image {
+  max-width: 250px;
+}
+.bpimage{
+  margin: 50px;
+}
 .blog-post-image {
-  height: 200px;
+  max-width: 400px;
   overflow: hidden;
+}
+.bottom {
+  margin-bottom: -100px;
 }
 .fa-star {
   color: gold;
