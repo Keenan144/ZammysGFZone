@@ -14,8 +14,12 @@ class BlogPostsController < ApplicationController
     if @blog_post == nil 
       @blog_post = BlogPost.find(params[:id])
     end
-    views = @blog_post.views
-    @blog_post.update(views: views + 1)
+    if @blog_post.views != nil 
+      views = @blog_post.views
+      @blog_post.update(views: views + 1)
+    else
+      @blog_post.update(views: 1)
+    end
   end
 
   # GET /blog_posts/new
@@ -31,6 +35,7 @@ class BlogPostsController < ApplicationController
   # POST /blog_posts.json
   def create
     @blog_post = BlogPost.new(blog_post_params)
+    @blog_post.update(views: 1)
 
     respond_to do |format|
       if @blog_post.save
