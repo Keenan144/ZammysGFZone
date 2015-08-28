@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
       user.update(last_login: DateTime.now)
       user.update(login_count: user.login_count += 1)
       params[:session][:remember_me] == '1' ? remember(user) : forget(user)
-      redirect_back_or user
+      redirect_to root_url
 
       views = SystemMetric.first.logins
      SystemMetric.first.update(logins: views + 1)
