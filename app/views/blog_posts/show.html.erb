@@ -17,9 +17,8 @@
               <% end %>
               </h1>
               <h3><%= User.find(@blog_post.user_id).username %></h3>
-              <% if @blog_post.site_url %>
-              <div><a href="<%=@blog_post.site_url%>">Visit <%=@blog_post.site_url%><br><br>
-              </div>
+              <% if @blog_post.site_url != "" %>
+              <div><a href="<%=@blog_post.site_url%>">Visit <%=@blog_post.site_url%><br><br></div>
               <% end %>
             <div
               class="fb-like"
@@ -38,21 +37,48 @@
           <div class="post-atribut bottom">
             <div class="row">
               <div class="col-md-4 col-sm-4 col-xs-4">
-                  <a href="/@blog_posts/<%= @blog_post.id %>"><span><i class="fa fa-heart"></i>  <%= @blog_post.votes %></span></a>
+                  <a href="/blog_posts/<%= @blog_post.id %>"><span><i class="fa fa-heart"></i>  <%= @blog_post.votes %></span></a>
               </div>
               <div class="col-md-4 col-sm-4 col-xs-4">
-                  <a href="/@blog_posts/<%= @blog_post.id %>"><span><i class="fa fa-comments"></i>  <%= @blog_post.comments.count %></span></a>
+                  <a href="/comments/new"><span><i class="fa fa-comments"></i>  <%= @blog_post.comments.count %></span></a>
               </div>
               <div class="col-md-4 col-sm-4 col-xs-4">
-                  <a href="/@blog_posts/<%= @blog_post.id %>"><span><i class="fa fa-eye"></i>  <%= @blog_post.views %></span></a>
+                  <a href="/blog_posts/<%= @blog_post.id %>"><span><i class="fa fa-eye"></i>  <%= @blog_post.views %></span></a>
               </div>
             </div>
           </div>
         </div>
-
-
     </div>
-
+</div>
+<br><br>
+<br><br>
+<h3 align="center">Top Comments</h3>
+<div class="comments-area">
+<% @comments.reverse.each do |comment| %>
+<div class="a-blog-post-comment">
+  <div class="username">
+    <%= p User.find(comment.user_id).username %><br>
+    <small>Votes: <%= p comment.votes %></small>
+  </div>
+  <div class="post-id">
+    Blog Post: <%= p BlogPost.find(comment.blog_post_id).title %>
+    <small><div class="date-title-info">
+      <%= p comment.title %><br>
+      <%= p comment.date %><br>
+      <%= p comment.created_at %>
+    </div></small>
+  </div>
+  <p>
+    <%= p comment.comment %>
+  </p>
+</div>
+<% if current_user.admin == "125905" %>
+ <%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' } %>
+<% end %>
+<% end %>
+</div>
+<div class="make-comment">
+  <%= render "comments/form"%>
 </div>
 
 

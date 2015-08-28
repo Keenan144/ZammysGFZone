@@ -1,17 +1,36 @@
 <%= form_for(@comment) do |f| %>
-  <% if @comment.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
 
-      <ul>
-      <% @comment.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+<div class="row white-text">
+  <div class="col-md-6 col-md-offset-3">
+      <%= render 'shared/error_messages' %>
+      <% if current_user != nil %>
+
+      <%= f.label :comment %>
+      <%= f.text_area :comment, cols: "97", rows: "5" %>
+      <br>
+
+      <%= f.hidden_field :user_id, :value => current_user.id %>
+
+      <%= f.hidden_field :date, :value => DateTime.now %>
+
+      <%= f.hidden_field :votes, :value => 1 %>
+
+      <%= f.hidden_field :title, :value => "#{User.find(current_user.id).username}'s comment on #{DateTime.now}" %>
+      <%= @user_post %>
+      <% if @user_post != nil %>
+      <%= f.hidden_field :user_post_id, :value => @user_post.id %>
+      <% elsif @blog_post != nil %>
+      <%= f.hidden_field :blog_post_id, :value => @blog_post.id %>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
 
-  <div class="actions">
-    <%= f.submit %>
+
+
+    <div class="create-comment-div">
+      <%= f.submit "comment", class: "btn btn-info create-comment" %>
+    </div>
+      <% else %>
+      Please log in <a href="/login">here</a>.
+      <% end %>
   </div>
+</div>
 <% end %>

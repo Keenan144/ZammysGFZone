@@ -28,8 +28,13 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to @comment, notice: 'Comment was successfully created.' }
-        format.json { render :show, status: :created, location: @comment }
+        if @comment.blog_post_id != nil
+          format.html { redirect_to blog_post_url(@comment.blog_post_id), notice: 'Comment was successfully created.' }
+          format.json { render :show, status: :created, location: @comment }
+        elsif @comment.user_post_id != nil 
+          format.html { redirect_to user_post_url(@comment.user_post_id), notice: 'Comment was successfully created.' }
+          format.json { render :show, status: :created, location: @comment }
+        end
       else
         format.html { render :new }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
@@ -56,8 +61,13 @@ class CommentsController < ApplicationController
   def destroy
     @comment.destroy
     respond_to do |format|
-      format.html { redirect_to comments_url, notice: 'Comment was successfully destroyed.' }
-      format.json { head :no_content }
+      if @comment.blog_post_id != nil
+          format.html { redirect_to blog_post_url(@comment.blog_post_id), notice: 'Comment was successfully destroyed.'  }
+          format.json { head :no_content }
+        elsif @comment.user_post_id != nil 
+          format.html { redirect_to user_post_url(@comment.user_post_id), notice: 'Comment was successfully destroyed.'  }
+          format.json { head :no_content }
+        end
     end
   end
 
@@ -69,6 +79,6 @@ class CommentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def comment_params
-      params[:comment]
+      params[:comment].permit(:user_id, :user_post_id, :blog_post_id, :title, :date, :votes, :comment)
     end
 end

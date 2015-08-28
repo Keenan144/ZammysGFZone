@@ -11,6 +11,8 @@ class BlogPostsController < ApplicationController
   # GET /blog_posts/1.json
   def show
     @blog_post = BlogPost.find_by(id: params[:format])
+    @comments = Comment.where(blog_post_id: params[:id]).order("votes DESC").last(10)
+    @comment = Comment.new
     if @blog_post == nil 
       @blog_post = BlogPost.find(params[:id])
     end
