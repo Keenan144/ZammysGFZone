@@ -3,46 +3,55 @@
 
 
 <div class="container">
-    <div class="row">
-        <div class="col-md-6">
-            <div class="bpimage">
-              <div class="post-content no-padding blog-image">
-              <img src="<%=@blog_post.image_url%>" alt="Image not available" >
-              </div>
-              <h1><%= @blog_post.title.titleize %>
-              <% if current_user %>
-                <% if current_user.admin == "125905" %>
-                  <%= link_to 'Edit', edit_blog_post_path(@blog_post) %>
-                <% end %>
-              <% end %>
-              </h1>
-              <h3><%= User.find(@blog_post.user_id).username %></h3>
-              <% if @blog_post.site_url != "" %>
-              <div><a href="<%=@blog_post.site_url%>">Visit <%=@blog_post.site_url%><br><br></div>
-              <% end %>
-            </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="bpimage">
+
+        <div class="post-content no-padding blog-image">
+
+          <img src="<%=@blog_post.image_url%>" alt="Image not available" >
         </div>
-        <div class="col-md-6 blog-container">
-          <div class="blog-content">
-            <h1><%= @blog_post.title.titleize %>
-              <h6><%= @blog_post.created_at %></h6></h1>
-            <p><%= @blog_post.blog_content %></p>
+
+        <h1><%= @blog_post.title.titleize %>
+        <% if current_user %>
+          <% if current_user.admin == "125905" %>
+            <%= link_to 'Edit', edit_blog_post_path(@blog_post) %>
+          <% end %>
+        <% end %>
+        </h1>
+
+        <h3>
+          <%= User.find(@blog_post.user_id).username %>
+        </h3>
+
+        <% if @blog_post.site_url != "" %>
+          <div>
+            <a href="<%=@blog_post.site_url%>">Visit <%=@blog_post.site_url%><br><br>
           </div>
-          <div class="post-atribut bottom">
-            <div class="row">
-              <div class="col-md-4 col-sm-4 col-xs-4">
-                  <a href="/blog_posts/<%= @blog_post.id %>"><span><i class="fa fa-heart"></i>  <%= @blog_post.votes %></span></a>
-              </div>
-              <div class="col-md-4 col-sm-4 col-xs-4">
-                  <a href="/comments/new"><span><i class="fa fa-comments"></i>  <%= @blog_post.comments.count %></span></a>
-              </div>
-              <div class="col-md-4 col-sm-4 col-xs-4">
-                  <a href="/blog_posts/<%= @blog_post.id %>"><span><i class="fa fa-eye"></i>  <%= @blog_post.views %></span></a>
-              </div>
+        <% end %> 
+
+      </div>
+      <div class="col-md-6 blog-container">
+        <div class="blog-content">
+          <h1><%= @blog_post.title.titleize %>
+            <h6><%= @blog_post.created_at %></h6></h1>
+          <p><%= @blog_post.blog_content %></p>
+        </div>
+        <div class="post-atribut bottom">
+          <div class="row">
+            <div class="col-md-4 col-sm-4 col-xs-4">
+                <a href="/blog_posts/<%= @blog_post.id %>"><span><i class="fa fa-heart"></i>  <%= @blog_post.votes %></span></a>
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-4">
+                <a href="/comments/new"><span><i class="fa fa-comments"></i>  <%= @blog_post.comments.count %></span></a>
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-4">
+                <a href="/blog_posts/<%= @blog_post.id %>"><span><i class="fa fa-eye"></i>  <%= @blog_post.views %></span></a>
             </div>
           </div>
         </div>
-    </div>
+      </div>
+  </div>
 </div>
 <br><br>
 <br><br>

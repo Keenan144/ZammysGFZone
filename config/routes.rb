@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
 
+  resources :visits
   root 'static_pages#home'
   get 'signup'  => 'users#new'
   get 'logout'  => 'sessions#destroy'

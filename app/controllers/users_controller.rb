@@ -23,6 +23,11 @@ class UsersController < ApplicationController
     @user.update(last_login: DateTime.now)
     @user.update(login_count: @user.login_count += 1)
 
+      request.env['HTTP_X_FORWARDED_FOR']
+      request.remote_ip 
+      request.env['REMOTE_ADDR']
+      @user.update(ipaddress: request.ip)
+
 
     if @user.save
       log_in @user

@@ -9,6 +9,18 @@ class StaticPagesController < ApplicationController
     @blog_posts = BlogPost.paginate(page: params[:page], per_page: 6)
     views = SystemMetric.first.site_visits
     SystemMetric.first.update(site_visits: views + 1)
+
+    request.env['HTTP_X_FORWARDED_FOR']
+    request.remote_ip 
+    request.env['REMOTE_ADDR']
+    request.ip
+    prev_visit = Visit.find_by(ipaddress: request.ip)
+
+    if prev_visit == nil
+      Visit.create(ipaddress: request.ip)
+    else
+      prev_visit.update(updated_at: DateTime.now)
+    end
   end
 
   def about
