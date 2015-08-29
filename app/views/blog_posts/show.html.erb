@@ -1,7 +1,6 @@
 <div class="top-user-show">
 </div>
 
-
 <div class="container">
   <div class="row">
     <div class="col-md-6">
@@ -67,10 +66,10 @@
   <div class="post-id">
     Blog Post: <%= p BlogPost.find(comment.blog_post_id).title %>
     <small><div class="date-title-info">
-      <%= p comment.title %><br>
-      <%= p comment.date %><br>
-      <%= p comment.created_at %>
-    </div></small>
+            <%= p comment.title %><br>
+            <%= p comment.date %><br>
+            <%= p comment.created_at %>
+          </div></small>
   </div>
   <p>
     <%= p comment.comment %>

@@ -13,8 +13,15 @@ class StaticPagesController < ApplicationController
     request.env['HTTP_X_FORWARDED_FOR']
     request.remote_ip 
     request.env['REMOTE_ADDR']
-    request.ip
-    Visit.create(ipaddress: request.ip)
+    
+    if request.ip
+      Visit.create(ipaddress: request.ip)
+    elsif request.env['REMOTE_ADDR']
+      Visit.create(ipaddress: request.env['REMOTE_ADDR'])
+    elsif request.remote_ip 
+      Visit.create(ipaddress: request.remote_ip)
+    end
+        
   end
 
   def about
