@@ -14,13 +14,7 @@ class StaticPagesController < ApplicationController
     request.remote_ip 
     request.env['REMOTE_ADDR']
     request.ip
-    prev_visit = Visit.find_by(ipaddress: request.ip)
-
-    if prev_visit == nil
-      Visit.create(ipaddress: request.ip)
-    else
-      prev_visit.update(updated_at: DateTime.now)
-    end
+    Visit.create(ipaddress: request.ip)
   end
 
   def about
