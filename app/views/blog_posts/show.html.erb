@@ -8,16 +8,16 @@
       <div class="bpimage">
 
         <div class="post-content no-padding blog-image">
-
           <img src="<%=@blog_post.image_url%>" alt="Image not available" >
         </div>
 
-        <h1><%= @blog_post.title.titleize %>
-        <% if current_user %>
-          <% if current_user.admin == "125905" %>
-            <%= link_to 'Edit', edit_blog_post_path(@blog_post) %>
+        <h1>
+          <%= @blog_post.title.titleize %>
+          <% if current_user %>
+            <% if current_user.admin == "125905" %>
+              <%= link_to 'Edit', edit_blog_post_path(@blog_post) %>
+            <% end %>
           <% end %>
-        <% end %>
         </h1>
 
         <h3>
@@ -25,12 +25,12 @@
         </h3>
 
         <% if @blog_post.site_url != "" %>
-          <div>
             <a href="<%=@blog_post.site_url%>">Visit <%=@blog_post.site_url%><br><br>
-          </div>
         <% end %> 
 
       </div>
+    </div>
+
       <div class="col-md-6 blog-container">
         <div class="blog-content">
           <h1><%= @blog_post.title.titleize %>
@@ -52,6 +52,7 @@
         </div>
       </div>
   </div>
+</div>
 </div>
 <br><br>
 <br><br>
@@ -75,8 +76,10 @@
     <%= p comment.comment %>
   </p>
 </div>
-<% if current_user.admin == "125905" %>
- <%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' } %>
+<% if current_user %>
+  <% if current_user.admin == "125905" %>
+   <%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' } %>
+  <% end %>
 <% end %>
 <% end %>
 </div>
