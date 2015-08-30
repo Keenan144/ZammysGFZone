@@ -56,7 +56,7 @@ class VisitsController < ApplicationController
   def destroy
     @visit.destroy
     respond_to do |format|
-      format.html { redirect_to visits_url, notice: 'Visit was successfully destroyed.' }
+      format.html { redirect_to admin_url, notice: 'Visit was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

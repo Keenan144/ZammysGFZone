@@ -12,6 +12,8 @@
   </thead>
 
   <tbody>
+<% if current_user %>
+  <% if current_user.admin == "125905" %>
     <% @comments.each do |comment| %>
       <tr>
         <td><%= link_to 'Show', comment %></td>
@@ -20,6 +22,8 @@
       </tr>
     <% end %>
   </tbody>
+  <% end %>
+<% end %>
 </table>
 
 <br>

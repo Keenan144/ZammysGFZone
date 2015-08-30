@@ -155,4 +155,9 @@
   margin-top: -40px;
 }
 
+.site-visits {
+  max-height: 600px;
+  overflow: scroll;
+}
+
 
