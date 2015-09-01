@@ -13,7 +13,12 @@ class StaticPagesController < ApplicationController
     
     if Visit.find_by(ipaddress: request.ip)
       visit = Visit.find_by(ipaddress: request.ip)
-      visit.update(nickname: "recurring visitor #{visit.id}")
+      if visit.nickname == nil 
+        visit.update(nickname: "recurring visitor #{visit.id}")
+      else
+        count = visit.login_count
+        visit.update(login_count: count + 1)
+      end
     else
       Visit.create(ipaddress: request.ip)
     end

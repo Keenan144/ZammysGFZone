@@ -104,6 +104,7 @@
               <tr>
                 <th>Site Visit IPAddress</th>
                 <th>Visited at</th>
+                <th>Visits</th>
                 <th>NickName</th>
                 <th>delete?</th>
               </tr>
@@ -111,7 +112,8 @@
             <% Visit.all.reverse.each do |visit| %>
               <tr>
                 <td><%= visit.ipaddress %></td>
-                <td><%= visit.created_at %></td>
+                <td><%= visit.updated_at %></td>
+                <td><%= visit.login_count %></td>
                 <td><%= visit.nickname %></td>
                 <td><%= link_to 'delete', visit, method: :delete, data: { confirm: 'Are you sure?' } %></td>
               </tr>
