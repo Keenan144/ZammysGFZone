@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
 
+  resources :archives
   resources :visits
   root 'static_pages#home'
   get 'signup'  => 'users#new'
@@ -29,6 +30,20 @@ Rails.application.routes.draw do
   get '/dinner/food_items' => 'foods#dinner_food_items'
   get '/dinner/recipes' => 'recipes#dinner_recipes'
   get '/dinner/snacks' => 'foods#dinner_food_items'
+
+
+  get '/archives/folder/january' => 'archives#january'
+  get '/archives/folder/february' => 'archives#february'
+  get '/archives/folder/march' => 'archives#march'
+  get '/archives/folder/april' => 'archives#april'
+  get '/archives/folder/may' => 'archives#may'
+  get '/archives/folder/june' => 'archives#june'
+  get '/archives/folder/july' => 'archives#july'
+  get '/archives/folder/august' => 'archives#august'
+  get '/archives/folder/september' => 'archives#september'
+  get '/archives/folder/november' => 'archives#november'
+  get '/archives/folder/december' => 'archives#december'
+
 
 
   resources :food_categories

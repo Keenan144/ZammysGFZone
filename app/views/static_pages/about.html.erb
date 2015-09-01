@@ -60,9 +60,15 @@
             <div class="widget-sidebar">
               <h3>Archives</h3>
               <ul>
-                <li><a href="#">August 2015</a> (0)</li>
-                <li><a href="#">July 2015</a> (0)</li>
-                <li><a href="#">June 2015</a> (0)</li>
+                <% folder = [] %>
+                <% Archive.order("created_at asc").last(5).each do |archive| %>
+
+                <% if folder.include?(archive.month.to_s) %>
+                <% else %>
+                  <li><a href="/archives/folder/<%= archive.month %>"><%= archive.month %></a> (<%= Archive.where(month: archive.month).count %>)</li>
+                <% end %>
+                <% folder << archive.month.to_s %>
+                <%end%>
               </ul>
             </div>
             

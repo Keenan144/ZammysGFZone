@@ -11,10 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150829200209) do
+ActiveRecord::Schema.define(version: 20150901062356) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "archives", force: :cascade do |t|
+    t.string   "site_url"
+    t.string   "image"
+    t.string   "title"
+    t.datetime "date"
+    t.integer  "votes"
+    t.text     "blog_content"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.string   "month"
+  end
 
   create_table "blog_posts", force: :cascade do |t|
     t.integer  "user_id"
@@ -147,6 +159,7 @@ ActiveRecord::Schema.define(version: 20150829200209) do
     t.string   "ipaddress"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "nickname"
   end
 
 end
