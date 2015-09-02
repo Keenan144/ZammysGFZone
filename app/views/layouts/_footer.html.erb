@@ -7,7 +7,7 @@
                   <h3>Recent Recipes</h3>
                   <ul class="list-unstyled">
                     <% Recipe.last(5).reverse.each do |recipe| %>
-                      <li><a href="recipe/<%=recipe.id%>"><%= recipe.title %></a></li>
+                      <li><%= link_to "#{recipe.title}", recipe_path(recipe) %></li>
                     <% end %>
                   </ul>
               </div>
