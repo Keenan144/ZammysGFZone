@@ -1,1 +1,7 @@
-lunch_recipes.html.erb
+<div class="top-user-show">
+</div>
+<%= render @recipes.order("created_at DESC")%>
+
+<br>
+
+<%= will_paginate @recipes %>

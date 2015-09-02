@@ -46,6 +46,16 @@ class RecipesController < ApplicationController
 
     respond_to do |format|
       if @recipe.save
+
+        if @recipe.placement == "breakfast"
+          @recipe.update(food_category_id: 1)
+        elsif @recipe.placement == "lunch"
+          @recipe.update(food_category_id: 2)
+        elsif @recipe.placement == "dinner"
+          @recipe.update(food_category_id: 3)
+        end
+
+        
         format.html { redirect_to @recipe, notice: 'Recipe was successfully created.' }
         format.json { render :show, status: :created, location: @recipe }
       else
@@ -61,11 +71,11 @@ class RecipesController < ApplicationController
     respond_to do |format|
 
       if @recipe.update(recipe_params)
-        if @recipe.food_category == "breakfast"
+        if @recipe.placement == "breakfast"
           @recipe.update(food_category_id: 1)
-        elsif @recipe.food_category == "lunch"
+        elsif @recipe.placement == "lunch"
           @recipe.update(food_category_id: 2)
-        elsif @recipe.food_category == "dinner"
+        elsif @recipe.placement == "dinner"
           @recipe.update(food_category_id: 3)
         end
         format.html { redirect_to @recipe, notice: 'Recipe was successfully updated.' }
@@ -95,6 +105,6 @@ class RecipesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def recipe_params
-      params[:recipe].permit(:title, :difficulty, :time, :taste_rating, :confirmed_gf, :user_id, :food_category)
+      params[:recipe].permit(:title, :difficulty, :time, :taste_rating, :confirmed_gf, :user_id, :placement)
     end
 end

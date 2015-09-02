@@ -30,9 +30,8 @@
       <%= f.label :confirmed_gf %>
       <%= f.text_field :confirmed_gf, class: 'form-control' %>
       <br>
-      Food Category
-      <% f.label :food_category %>
-      <%= f.select :food_category, [ 'breakfast', 'lunch', 'dinner' ], :prompt => 'Select One', class: 'form-control'  %>
+      <%= f.label :placement %>
+      <%= f.select :placement, [ 'breakfast', 'lunch', 'dinner' ], :prompt => 'Select One', class: 'form-control'  %>
 
       <%= f.hidden_field :user_id, :value => current_user.id %>
 

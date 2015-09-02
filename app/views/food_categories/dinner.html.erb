@@ -32,8 +32,11 @@
   </div>
 </div>
 
+<%= render @recipes.order("created_at DESC")%>
 
-will paginate 6 recipes randomly here
+<br>
+
+<%= will_paginate @recipes %>
 
 
 <%= link_to 'Back', root_path %>

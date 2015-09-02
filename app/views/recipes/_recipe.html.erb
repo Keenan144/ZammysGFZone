@@ -1,0 +1,38 @@
+
+Title: <%= recipe.title %><br>
+Confirmed Gluten Free: <%= recipe.confirmed_gf %><br>
+Taste rating <% recipe.taste_rating.to_i.times do |star| %>
+<i class="fa fa-star"></i> 
+<% end %><br><% rater = 0 %>
+Difficulty to cook <% recipe.difficulty.to_i.times do |star| %>
+<% rater += 1 %>
+<i class="fa fa-exclamation"></i> 
+<% end %>
+<% if rater > 4 %>
+<strong><small>Hard</small></strong>
+<% elsif rater == 3 %>
+<strong><small>Medium</small></strong>
+<% elsif rater == 2 %>
+<strong><small>Normal</small></strong>
+<% elsif rater == 1 %>
+<strong><small>Easy</small></strong>
+<% else %>
+<strong><small>Simple</small></strong>
+<% end %>
+<br>
+
+Food Category: <%= recipe.placement %><br>
+
+<% counter = 0 %>
+<% recipe.steps.each do |step| %>
+<%= counter += 1 %>)
+<%= step.step %>
+<br>
+<% end %>
+
+<% if current_user %>
+  <% if current_user.admin == "125905" %>
+    <%= link_to 'Edit', edit_recipe_path(recipe) %> |
+    <%= link_to 'Back', recipes_path %>
+  <% end %>
+<% end %>

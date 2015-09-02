@@ -8,14 +8,20 @@ class FoodCategoriesController < ApplicationController
   end
 
   def breakfast
+    recipes = Recipe.where(food_category_id: 1)
+    @recipes = recipes.paginate(page: params[:page], per_page: 6)
     @foods = Food.where(food_category_id: 1)
   end
 
   def lunch
+    recipes = Recipe.where(food_category_id: 2)
+    @recipes = recipes.paginate(page: params[:page], per_page: 6)
     @foods = Food.where(food_category_id: 2)
   end
 
   def dinner
+    recipes = Recipe.where(food_category_id: 3)
+    @recipes = recipes.paginate(page: params[:page], per_page: 6)
     @foods = Food.where(food_category_id: 3)
   end
 

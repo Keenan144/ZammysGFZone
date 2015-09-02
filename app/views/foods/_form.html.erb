@@ -40,7 +40,7 @@
 
       1)breakfast, 2)lunch, 3)dinner
       <%= f.label :food_category_id %>
-      <%= f.text_field :food_category_id, class: 'form-control' %>
+      <%= f.select :food_category_id, [ '1', '2', '3' ], :prompt => 'Select One', class: 'form-control'  %>
 
 
       <br>

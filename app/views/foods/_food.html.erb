@@ -3,14 +3,30 @@
 <% end %>
 
 Name: <%= food.name %><br>
-Confirmed Gluten Free<%= food.confirmed_gf %><br>
+Confirmed Gluten Free: <%= food.confirmed_gf %><br>
 Price I pay: $<%= food.price %><br>
 Taste rating <% food.taste.to_i.times do |star| %>
 <i class="fa fa-star"></i> 
 <% end %><br>
+
+<% rater = 0 %>
 Difficulty to cook <% food.difficulty.to_i.times do |star| %>
+<% rater += 1 %>
 <i class="fa fa-exclamation"></i> 
-<% end %><br>
+<% end %>
+<% if rater > 4 %>
+<strong><small>Hard</small></strong>
+<% elsif rater == 3 %>
+<strong><small>Medium</small></strong>
+<% elsif rater == 2 %>
+<strong><small>Normal</small></strong>
+<% elsif rater == 1 %>
+<strong><small>Easy</small></strong>
+<% else %>
+<strong><small>Simple</small></strong>
+<% end %>
+<br>
+
 Where I buy it: <%= food.where_to_find %><br>
 Category of food: <%= FoodCategory.find(food.food_category_id).category_name %><br>
 

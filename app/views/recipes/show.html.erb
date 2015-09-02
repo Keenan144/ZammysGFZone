@@ -10,6 +10,8 @@ Difficulty to cook <% @recipe.difficulty.to_i.times do |star| %>
 <i class="fa fa-exclamation"></i> 
 <% end %><br>
 
+Food Category: <%= @recipe.placement %><br>
+
 <% counter = 0 %>
 <% @recipe.steps.each do |step| %>
 <%= counter += 1 %>)
@@ -19,7 +21,7 @@ Difficulty to cook <% @recipe.difficulty.to_i.times do |star| %>
 
 <% if current_user %>
   <% if current_user.admin == "125905" %>
-<%= link_to 'Edit', edit_recipe_path(@recipe) %> |
-<%= link_to 'Back', recipes_path %>
+    <%= link_to 'Edit', edit_recipe_path(@recipe) %> |
+    <%= link_to 'Back', recipes_path %>
   <% end %>
 <% end %>
