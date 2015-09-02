@@ -57,6 +57,7 @@
                 <th>Foods</th>
                 <th>Restaurants</th>
                 <th>Fast Foods</th>
+                <th>Recipes</th>
               </tr>
             </thead>
               <tr>
@@ -68,6 +69,7 @@
                 <td><%= Food.count %></td>
                 <td><%= Restaurant.count %></td>
                 <td><%= FastFood.count %></td>
+                <td><%= Recipe.count %></td>
               </tr>
              </table>
           </div>
@@ -109,10 +111,12 @@
                 <th>delete?</th>
               </tr>
             </thead>
+
             <% Visit.all.reverse.each do |visit| %>
+            <% time = Time.parse(visit.updated_at.to_s).in_time_zone("Central Time (US & Canada)") %>
               <tr>
                 <td><%= visit.ipaddress %></td>
-                <td><%= visit.updated_at %></td>
+                <td><%= time.strftime("Visited on %m/%d/%Y at %I:%M%p")%></td>
                 <td><%= visit.login_count %></td>
                 <td><%= visit.nickname %></td>
                 <td><%= link_to 'delete', visit, method: :delete, data: { confirm: 'Are you sure?' } %></td>

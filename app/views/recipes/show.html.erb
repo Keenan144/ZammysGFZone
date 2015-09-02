@@ -1,4 +1,28 @@
-<p id="notice"><%= notice %></p>
+<div class="top-user-show">
+</div>
 
+Title: <%= @recipe.title %><br>
+Confirmed Gluten Free: <%= @recipe.confirmed_gf %><br>
+Taste rating <% @recipe.taste_rating.to_i.times do |star| %>
+<i class="fa fa-star"></i> 
+<% end %><br>
+Difficulty to cook <% @recipe.difficulty.to_i.times do |star| %>
+<i class="fa fa-exclamation"></i> 
+<% end %><br>
+
+<br><br>
+<div
+  class="fb-like"
+  data-share="true"
+  data-width="450"
+  data-show-faces="true">
+</div>
+<hr>
+<br><br>
+
+<% if current_user %>
+  <% if current_user.admin == "125905" %>
 <%= link_to 'Edit', edit_recipe_path(@recipe) %> |
 <%= link_to 'Back', recipes_path %>
+  <% end %>
+<% end %>

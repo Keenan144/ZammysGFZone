@@ -1,6 +1,35 @@
+<div class="top-user-show">
+</div>
 <h1>Editing Recipe</h1>
 
 <%= render 'form' %>
+
+<% if @recipe.id != nil %>
+
+<% Step.where(recipe_id: @recipe.id).each do |step| %>
+<%= step.step %><br>
+<%end%>
+
+  <div class="steps"></div>
+
+  <div class="new-step">
+    <button>new step</button>
+  </div>
+  <%= link_to 'Back', recipes_path %>
+
+  <script type="text/javascript">
+
+  $('.new-step').click(function(e) {
+      e.preventDefault();
+      // Normal code goes here but you no longer need return false;
+      $('.new-step').hide();
+      $('.steps').append("<%= escape_javascript(
+      render :partial => "step", :object => Step.new)%>");
+          
+  });
+
+  </script>
+<% end %>
 
 <%= link_to 'Show', @recipe %> |
 <%= link_to 'Back', recipes_path %>

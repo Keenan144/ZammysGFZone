@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
 
+  resources :steps
   resources :archives
   resources :visits
   root 'static_pages#home'

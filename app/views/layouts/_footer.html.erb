@@ -6,8 +6,8 @@
               <div class="widget">
                   <h3>Recent Recipes</h3>
                   <ul class="list-unstyled">
-                    <% Recipe.last(5).each do |recipe| %>
-                      <li><a href="#">Lorem ipsum</a></li>
+                    <% Recipe.last(5).reverse.each do |recipe| %>
+                      <li><a href="recipe/<%=recipe.id%>"><%= recipe.title %></a></li>
                     <% end %>
                   </ul>
               </div>

@@ -11,7 +11,36 @@
     </div>
   <% end %>
 
-  <div class="actions">
-    <%= f.submit %>
+<div class="row white-text">
+  <div class="col-md-6 col-md-offset-3">
+      <%= render 'shared/error_messages' %>
+
+      <%= f.label :title %>
+      <%= f.text_field :title, class: 'form-control' %>
+
+      <%= f.label :difficulty %>
+      <%= f.text_field :difficulty, class: 'form-control' %>
+
+      <%= f.label :time %>
+      <%= f.text_field :time, class: 'form-control' %>
+
+      <%= f.label :taste_rating %>
+      <%= f.text_field :taste_rating, class: 'form-control' %>
+
+      <%= f.label :confirmed_gf %>
+      <%= f.text_field :confirmed_gf, class: 'form-control' %>
+      <br>
+      Food Category
+      <% f.label :food_category %>
+      <%= f.select :food_category, [ 'breakfast', 'lunch', 'dinner' ], :prompt => 'Select One', class: 'form-control'  %>
+
+      <%= f.hidden_field :user_id, :value => current_user.id %>
+
+      <br>
+      <div class="create-account">
+      <%= f.submit "Save Info", class: "btn btn-primary sign-up-button" %>
+    </div>
   </div>
+</div>
+
 <% end %>

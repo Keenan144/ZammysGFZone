@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150901070944) do
+ActiveRecord::Schema.define(version: 20150902030551) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -97,6 +97,9 @@ ActiveRecord::Schema.define(version: 20150901070944) do
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
     t.integer  "food_category_id"
+    t.string   "title"
+    t.integer  "user_id"
+    t.integer  "food_category"
   end
 
   create_table "replies", force: :cascade do |t|
@@ -120,6 +123,16 @@ ActiveRecord::Schema.define(version: 20150901070944) do
   create_table "static_pages", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "steps", force: :cascade do |t|
+    t.string   "title"
+    t.text     "step"
+    t.string   "image"
+    t.string   "link"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "recipe_id"
   end
 
   create_table "system_metrics", force: :cascade do |t|

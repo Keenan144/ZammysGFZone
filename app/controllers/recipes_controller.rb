@@ -10,6 +10,7 @@ class RecipesController < ApplicationController
   # GET /recipes/1
   # GET /recipes/1.json
   def show
+    @step = Step.new
   end
 
   def breakfast_recipes
@@ -30,10 +31,12 @@ class RecipesController < ApplicationController
   # GET /recipes/new
   def new
     @recipe = Recipe.new
+    @step = Step.new
   end
 
   # GET /recipes/1/edit
   def edit
+    @step = Step.new
   end
 
   # POST /recipes
@@ -56,7 +59,15 @@ class RecipesController < ApplicationController
   # PATCH/PUT /recipes/1.json
   def update
     respond_to do |format|
+
       if @recipe.update(recipe_params)
+        if @recipe.food_category == "breakfast"
+          @recipe.update(food_category_id: 1)
+        elsif @recipe.food_category == "lunch"
+          @recipe.update(food_category_id: 2)
+        elsif @recipe.food_category == "dinner"
+          @recipe.update(food_category_id: 3)
+        end
         format.html { redirect_to @recipe, notice: 'Recipe was successfully updated.' }
         format.json { render :show, status: :ok, location: @recipe }
       else
@@ -84,6 +95,6 @@ class RecipesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def recipe_params
-      params[:recipe]
+      params[:recipe].permit(:title, :difficulty, :time, :taste_rating, :confirmed_gf, :user_id, :food_category)
     end
 end
