@@ -1,4 +1,5 @@
 class Food < ActiveRecord::Base
+  has_many :likes
 
   belongs_to :food_category
   belongs_to :recipe

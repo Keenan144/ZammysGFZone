@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
 
 
+  resources :likes
   resources :steps
   resources :archives
   resources :visits
   root 'static_pages#home'
+
+
   get 'signup'  => 'users#new'
   get 'logout'  => 'sessions#destroy'
   get    'login'   => 'sessions#new'
@@ -44,6 +47,12 @@ Rails.application.routes.draw do
   get '/archives/folder/september' => 'archives#september'
   get '/archives/folder/november' => 'archives#november'
   get '/archives/folder/december' => 'archives#december'
+
+
+  get '/like/blog_post/:id' => 'likes#like-blogpost'
+  get '/like/comment/:id' => 'likes#like-comment'
+  get '/like/recipe/:id' => 'likes#like-recipe'
+
 
 
 

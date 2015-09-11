@@ -20,7 +20,7 @@ class StaticPagesController < ApplicationController
         visit.update(login_count: count + 1)
       end
     else
-      Visit.create(ipaddress: request.ip)
+      Visit.create(ipaddress: request.ip, login_count: 1)
     end
         
   end

@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   has_many :blog_posts
   has_many :replys
   has_many :recipes
+  has_many :likes
 
   validates :username, presence: true, uniqueness: true
   has_secure_password

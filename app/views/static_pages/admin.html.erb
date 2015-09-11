@@ -3,7 +3,7 @@
 </div>
 <br>
 <br>
-<% if current_user && current_user.admin =="125905" %>
+<% if current_admin %>
 <div class="container-fluid">
   <div class="row">
     <div class="col-sm-8 col-md-2 sidebar">
@@ -13,9 +13,9 @@
         <li><%= link_to 'New Blog Post', new_blog_post_path%></li>
         <li><%= link_to 'New Food Item', new_food_path %></li>
         <li><%= link_to 'New Recipe', new_recipe_path%></li>
-        <li><%= link_to 'New Fast Food Place', new_fast_food_path%></li>
-        <li><%= link_to 'New Restaurant Place', new_restaurant_path%></li>
-        <li><%= link_to 'Edit User Posts', user_posts_path%></li>
+        <li><% link_to 'New Fast Food Place', new_fast_food_path%></li>
+        <li><% link_to 'New Restaurant Place', new_restaurant_path%></li>
+        <li><% link_to 'Edit User Posts', user_posts_path%></li>
 
       </ul>
     </div>
@@ -34,7 +34,7 @@
                   <td><%= user.username %></td>
                   <% if user.last_login %>
                     <% time = Time.parse(user.last_login.to_s) %>
-                    <td><%= time.in_time_zone("Pacific Time (US & Canada)").strftime('%D %r') %></td>
+                    <td><%= time.in_time_zone("Central Time (US & Canada)").strftime('%D %r') %></td>
                   <% else %>
                     <td> / </td>
                   <% end %>
