@@ -12,7 +12,8 @@ class RecipesController < ApplicationController
   def show
 
     @recipe = Recipe.find_by(id: params[:id])
-    @comments = @recipe.comments
+    comments = @recipe.comments
+    @comments = comments.paginate(page: params[:page], per_page: 10)
     @comment = Comment.new
     if @recipe.views != nil 
       views = @recipe.views

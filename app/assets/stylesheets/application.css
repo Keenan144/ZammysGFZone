@@ -59,12 +59,27 @@
 .navbar-default {
   background-color: transparent;
 }
-.post-id {
-  float: right;
-  margin-top: -40px;
-}
 .footer-logo{
   float: right;
+}
+.post-id {
+  float: right;
+}
+.comments-area {
+  background-color: rgba(245,245,245,0.8);
+}
+.username {
+  margin: 10px;
+  color: navy;
+}
+.comment-content{
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 600px;
+}
+.single-comment {
+  background-color: white;
+  margin-bottom: 10px;
 }
 
 

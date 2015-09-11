@@ -4,17 +4,18 @@ class BlogPostsController < ApplicationController
   # GET /blog_posts
   # GET /blog_posts.json
   def index
-    @blog_posts = BlogPost.paginate(page: params[:page])
+    @blog_posts = BlogPost.paginate(page: params[:page], per_page: 10)
   end
 
   # GET /blog_posts/1
   # GET /blog_posts/1.json
   def show
-    @blog_post = BlogPost.find_by(id: params[:format])
-    @comments = Comment.where(blog_post_id: params[:id]).order("votes DESC").last(10)
+    @blog_post = BlogPost.find_by(id: params[:id])
+    comments = @blog_post.comments
+    @comments = comments.paginate(page: params[:page], per_page: 10)
     @comment = Comment.new
     if @blog_post == nil 
-      @blog_post = BlogPost.find(params[:id])
+      @blog_post = BlogPost.find(params[:format])
     end
     if @blog_post.views != nil 
       views = @blog_post.views

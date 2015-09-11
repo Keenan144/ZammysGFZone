@@ -49,30 +49,8 @@
 
 <h3 align="center">Top Comments</h3>
 <div class="comments-area">
-<% @comments.reverse.each do |comment| %>
-<div class="a-blog-post-comment">
-  <div class="username">
-    <%= p User.find(comment.user_id).username %><br>
-    <small>Votes: <%= p comment.votes %></small>
-  </div>
-  <div class="post-id">
-    Recipe: <%= p Recipe.find(comment.recipe_id).title %>
-    <small><div class="date-title-info">
-            <%= p comment.title %><br>
-            <%= p comment.date %><br>
-            <%= p comment.created_at %>
-          </div></small>
-  </div>
-  <p>
-    <%= p comment.comment %>
-  </p>
-</div>
-<% if current_user %>
-  <% if current_user.admin == "125905" %>
-   <%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' } %>
-  <% end %>
-<% end %>
-<% end %>
+  <%= render @comments.order("created_at DESC")%>
+  <%= will_paginate @comments %>
 </div>
 <div class="make-comment">
   <%= render "comments/form"%>
