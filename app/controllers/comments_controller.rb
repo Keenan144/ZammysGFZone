@@ -34,6 +34,9 @@ class CommentsController < ApplicationController
         elsif @comment.user_post_id != nil 
           format.html { redirect_to user_post_url(@comment.user_post_id), notice: 'Comment was successfully created.' }
           format.json { render :show, status: :created, location: @comment }
+        elsif @comment.recipe_id != nil 
+          format.html { redirect_to recipe_url(@comment.recipe_id), notice: 'Comment was successfully created.' }
+          format.json { render :show, status: :created, location: @comment }
         end
       else
         format.html { render :new }
@@ -79,6 +82,6 @@ class CommentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def comment_params
-      params[:comment].permit(:user_id, :user_post_id, :blog_post_id, :title, :date, :votes, :comment)
+      params[:comment].permit(:user_id, :user_post_id, :blog_post_id, :title, :date, :votes, :comment, :recipe_id)
     end
 end

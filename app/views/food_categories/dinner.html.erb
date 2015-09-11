@@ -31,11 +31,15 @@
     </div>
   </div>
 </div>
-<div class="recipe-paginator">
+<section id="content">
+  <div class="container">
+    <div class="recipe-paginator">
   
 <%= render @recipes.order("created_at DESC")%>
 
 <br>
 
 <%= will_paginate @recipes %>
-</div>
+    </div>
+  </div>
+</section>

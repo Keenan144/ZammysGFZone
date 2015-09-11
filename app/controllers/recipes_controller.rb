@@ -10,7 +10,10 @@ class RecipesController < ApplicationController
   # GET /recipes/1
   # GET /recipes/1.json
   def show
+
     @recipe = Recipe.find_by(id: params[:id])
+    @comments = @recipe.comments
+    @comment = Comment.new
     if @recipe.views != nil 
       views = @recipe.views
       @recipe.update(views: views + 1)
@@ -119,6 +122,6 @@ class RecipesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def recipe_params
-      params[:recipe].permit(:title, :difficulty, :time, :taste_rating, :confirmed_gf, :user_id, :placement, :votes, :views, :description)
+      params[:recipe].permit(:title, :difficulty, :time, :taste_rating, :confirmed_gf, :user_id, :placement, :votes, :views, :description, :image)
     end
   end

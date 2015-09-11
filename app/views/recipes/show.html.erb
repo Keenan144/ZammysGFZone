@@ -2,8 +2,10 @@
 
 <div class="top-user-show">
 </div>
+<section id="content">
+  <div class="container">
 
-  <div class="col-md-5 col-sm-6">
+  <div class="col-md-6 col-sm-6">
     <div class="post-container">
       <div class="post-content no-padding" align="center">
         <h2><%= @recipe.title %></h2>
@@ -12,6 +14,7 @@
 
     <div class="post-content">
       <p class="content">
+
         <div class="diff-rate">
           <small><%= self.determine_diff(@recipe.difficulty.to_i) %></small>
           <% @recipe.difficulty.to_i.times do |star| %> 
@@ -19,27 +22,58 @@
           <% end %>
         </div>
 
+        <% counter = 0 %>
+        <% @recipe.steps.each do |step| %>
+        <p class="single-step"><%= counter += 1 %>)
+        <%= step.step %></p>
+        <% end %>
 
-    <% counter = 0 %>
-    <% @recipe.steps.each do |step| %>
-    <p class="single-step"><%= counter += 1 %>)
-    <%= step.step %></p>
-    <% end %>
+        <% if current_admin %>
+            <%= link_to 'Edit', edit_recipe_path(@recipe) %> |
+            <%= link_to 'Back', recipes_path %>
+        <% end %>
 
-    <% if current_admin %>
-        <%= link_to 'Edit', edit_recipe_path(@recipe) %> |
-        <%= link_to 'Back', recipes_path %>
-    <% end %>
+        </div>
+      </div>
+    </div>
 
+  <div class="col-md-6 col-sm-6">
+    <div class="post-container">
+      <div class="post-content recipe-image">
+          <img src="<%= @recipe.image %>" alt="Image not available" >
       </div>
     </div>
   </div>
+</div>
+</section>
 
-
-<div class="col-md-5 col-sm-6">
-  <div class="post-container">
-    <div class="post-content no-padding recipe-image">
-        <img src="<%= @recipe.image %>" alt="Image not available" >
-    </div>
+<h3 align="center">Top Comments</h3>
+<div class="comments-area">
+<% @comments.reverse.each do |comment| %>
+<div class="a-blog-post-comment">
+  <div class="username">
+    <%= p User.find(comment.user_id).username %><br>
+    <small>Votes: <%= p comment.votes %></small>
   </div>
+  <div class="post-id">
+    Recipe: <%= p Recipe.find(comment.recipe_id).title %>
+    <small><div class="date-title-info">
+            <%= p comment.title %><br>
+            <%= p comment.date %><br>
+            <%= p comment.created_at %>
+          </div></small>
+  </div>
+  <p>
+    <%= p comment.comment %>
+  </p>
+</div>
+<% if current_user %>
+  <% if current_user.admin == "125905" %>
+   <%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' } %>
+  <% end %>
+<% end %>
+<% end %>
+</div>
+<div class="make-comment">
+  <%= render "comments/form"%>
 </div>

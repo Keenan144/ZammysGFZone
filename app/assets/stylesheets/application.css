@@ -27,7 +27,9 @@
 #header {
   background: url('../img/IMG_2946.jpg');
 }
-
+.body-spacer{
+  min-height: 600px;
+}
 .bottom {
   margin-bottom: -100px;
 }
@@ -36,9 +38,6 @@
 }
 .fa-exclamation {
   color: red;
-}
-.body {
-  min-height: 500px;
 }
 .top-user-show {
   height: 20%;

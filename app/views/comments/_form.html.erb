@@ -21,6 +21,8 @@
       <%= f.hidden_field :user_post_id, :value => @user_post.id %>
       <% elsif @blog_post != nil %>
       <%= f.hidden_field :blog_post_id, :value => @blog_post.id %>
+      <% elsif @recipe != nil %>
+      <%= f.hidden_field :recipe_id, :value => @recipe.id %>
       <% end %>
 
 
