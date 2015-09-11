@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150902094827) do
+ActiveRecord::Schema.define(version: 20150911163955) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,12 +29,12 @@ ActiveRecord::Schema.define(version: 20150902094827) do
   end
 
   create_table "blog_posts", force: :cascade do |t|
-    t.integer  "user_id"
     t.string   "site_url"
     t.string   "title"
     t.datetime "date"
     t.integer  "votes"
     t.text     "blog_content"
+    t.integer  "user_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.integer  "views"
@@ -42,15 +42,16 @@ ActiveRecord::Schema.define(version: 20150902094827) do
   end
 
   create_table "comments", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "user_post_id"
-    t.integer  "blog_post_id"
     t.string   "title"
     t.datetime "date"
     t.integer  "votes"
     t.text     "comment"
+    t.integer  "user_id"
+    t.integer  "user_post_id"
+    t.integer  "blog_post_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.integer  "recipe_id"
   end
 
   create_table "fast_foods", force: :cascade do |t|
@@ -59,6 +60,8 @@ ActiveRecord::Schema.define(version: 20150902094827) do
     t.integer  "expensive_rating"
     t.integer  "taste_rating"
     t.string   "location"
+    t.integer  "blog_post_id"
+    t.integer  "user_post_id"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
   end
@@ -72,19 +75,19 @@ ActiveRecord::Schema.define(version: 20150902094827) do
   create_table "foods", force: :cascade do |t|
     t.string   "type"
     t.string   "confirmed_gf"
+    t.string   "where_to_find"
     t.integer  "price"
     t.integer  "taste"
     t.integer  "difficulty"
-    t.string   "where_to_find"
     t.integer  "rating"
     t.integer  "views"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.integer  "image_file_size"
-    t.datetime "image_updated_at"
     t.integer  "food_category_id"
+    t.integer  "recipe_id"
+    t.integer  "fast_food_id"
+    t.integer  "restaurant_id"
+    t.integer  "blog_post_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
     t.string   "name"
     t.integer  "user_id"
   end
@@ -94,13 +97,19 @@ ActiveRecord::Schema.define(version: 20150902094827) do
     t.integer  "time"
     t.integer  "taste_rating"
     t.string   "confirmed_gf"
+    t.integer  "user_id"
+    t.integer  "blog_post_id"
+    t.integer  "category"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
     t.integer  "food_category_id"
     t.string   "title"
-    t.integer  "user_id"
     t.integer  "food_category"
     t.string   "placement"
+    t.integer  "views"
+    t.integer  "votes"
+    t.text     "description"
+    t.string   "image"
   end
 
   create_table "replies", force: :cascade do |t|
@@ -117,6 +126,8 @@ ActiveRecord::Schema.define(version: 20150902094827) do
     t.integer  "expensive_rating"
     t.integer  "taste_rating"
     t.string   "location"
+    t.integer  "blog_post_id"
+    t.integer  "user_post_id"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
   end
@@ -147,12 +158,11 @@ ActiveRecord::Schema.define(version: 20150902094827) do
   end
 
   create_table "user_posts", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "blog_post_id"
     t.string   "title"
     t.datetime "date"
     t.integer  "votes"
     t.text     "post_content"
+    t.integer  "user_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end

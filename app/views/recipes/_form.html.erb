@@ -18,22 +18,28 @@
       <%= f.label :title %>
       <%= f.text_field :title, class: 'form-control' %>
 
+      <%= f.label :description %>
+      <%= f.text_field :description, class: 'form-control' %>
+
       <%= f.label :difficulty %>
       <%= f.text_field :difficulty, class: 'form-control' %>
 
       <%= f.label :time %>
       <%= f.text_field :time, class: 'form-control' %>
 
-      <%= f.label :taste_rating %>
-      <%= f.text_field :taste_rating, class: 'form-control' %>
+      <%= f.label :image %>
+      <%= f.text_field :image, class: 'form-control' %>
 
-      <%= f.label :confirmed_gf %>
-      <%= f.text_field :confirmed_gf, class: 'form-control' %>
+
       <br>
       <%= f.label :placement %>
-      <%= f.select :placement, [ 'breakfast', 'lunch', 'dinner' ], :prompt => 'Select One', class: 'form-control'  %>
+      <%= f.select :placement, [ 'breakfast', 'lunch', 'dinner', 'snacks', 'dessert' ], :prompt => 'Select One', class: 'form-control'  %>
 
       <%= f.hidden_field :user_id, :value => current_user.id %>
+
+      <%= f.hidden_field :votes, :value => 1 %>
+
+      <%= f.hidden_field :views, :value => 1 %>
 
       <br>
       <div class="create-account">

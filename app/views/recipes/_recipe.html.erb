@@ -1,38 +1,38 @@
+<!-- paginated recipes -->
 
-Title: <%= recipe.title %><br>
-Confirmed Gluten Free: <%= recipe.confirmed_gf %><br>
-Taste rating <% recipe.taste_rating.to_i.times do |star| %>
-<i class="fa fa-star"></i> 
-<% end %><br><% rater = 0 %>
-Difficulty to cook <% recipe.difficulty.to_i.times do |star| %>
-<% rater += 1 %>
-<i class="fa fa-exclamation"></i> 
-<% end %>
-<% if rater > 4 %>
-<strong><small>Hard</small></strong>
-<% elsif rater == 3 %>
-<strong><small>Medium</small></strong>
-<% elsif rater == 2 %>
-<strong><small>Normal</small></strong>
-<% elsif rater == 1 %>
-<strong><small>Easy</small></strong>
-<% else %>
-<strong><small>Simple</small></strong>
-<% end %>
-<br>
-
-Food Category: <%= recipe.placement %><br>
-
-<% counter = 0 %>
-<% recipe.steps.each do |step| %>
-<%= counter += 1 %>)
-<%= step.step %>
-<br>
-<% end %>
-
-<% if current_user %>
-  <% if current_user.admin == "125905" %>
-    <%= link_to 'Edit', edit_recipe_path(recipe) %> |
-    <%= link_to 'Back', recipes_path %>
-  <% end %>
-<% end %>
+<div class="col-md-4 col-sm-6">
+  <div class="post-container">
+    <div class="post-content no-padding blog-post-image">
+        <a href="/recipes/<%= recipe.id%>">
+          <img src="<%=recipe.image %>" alt="Image not available" >
+        </a>
+      </div>
+      <div class="post-content">
+        <h2><%= recipe.title %></h2>
+        <h5><small><%= self.determine_diff(recipe.difficulty) %> difficulty 
+        <%= recipe.placement %> recipe</small></h5>
+          <p class="blog-post-content"><% counter = 0 %>
+            <% recipe.steps.first(3).each do |step| %>
+            <%= counter += 1 %>)
+            <%= step.step %><br>
+            <% end %>
+          </p>
+        <div class="post-link">
+            <a href="/recipes/<%= recipe.id%>"><span>See Recipe</span></a>
+        </div>
+      </div>
+      <div class="post-atribut">
+          <div class="row">
+              <div class="col-md-4 col-sm-4 col-xs-4">
+                  <a href="/recipes/<%= recipe.id%>"><span><i class="fa fa-heart"></i>  <%= recipe.votes %></span></a>
+              </div>
+              <div class="col-md-4 col-sm-4 col-xs-4">
+                  <a href="/recipes/<%= recipe.id%>"><span><i class="fa fa-comments"></i>  <%= recipe.comments.count %></span></a>
+              </div>
+              <div class="col-md-4 col-sm-4 col-xs-4">
+                  <a href="/recipes/<%= recipe.id%>"><span><i class="fa fa-eye"></i>  <%= recipe.views %></span></a>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>

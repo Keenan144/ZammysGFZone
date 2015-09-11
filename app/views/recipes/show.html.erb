@@ -1,27 +1,45 @@
+<!-- Full Recipe page -->
+
 <div class="top-user-show">
 </div>
 
-Title: <%= @recipe.title %><br>
-Confirmed Gluten Free: <%= @recipe.confirmed_gf %><br>
-Taste rating <% @recipe.taste_rating.to_i.times do |star| %>
-<i class="fa fa-star"></i> 
-<% end %><br>
-Difficulty to cook <% @recipe.difficulty.to_i.times do |star| %>
-<i class="fa fa-exclamation"></i> 
-<% end %><br>
+  <div class="col-md-5 col-sm-6">
+    <div class="post-container">
+      <div class="post-content no-padding" align="center">
+        <h2><%= @recipe.title %></h2>
+        <h5><small><%= @recipe.placement %> Foods</small></h5>
+      </div>
 
-Food Category: <%= @recipe.placement %><br>
+    <div class="post-content">
+      <p class="content">
+        <div class="diff-rate">
+          <small><%= self.determine_diff(@recipe.difficulty.to_i) %></small>
+          <% @recipe.difficulty.to_i.times do |star| %> 
+              <i class="fa fa-exclamation"></i> 
+          <% end %>
+        </div>
 
-<% counter = 0 %>
-<% @recipe.steps.each do |step| %>
-<%= counter += 1 %>)
-<%= step.step %>
-<br>
-<% end %>
 
-<% if current_user %>
-  <% if current_user.admin == "125905" %>
-    <%= link_to 'Edit', edit_recipe_path(@recipe) %> |
-    <%= link_to 'Back', recipes_path %>
-  <% end %>
-<% end %>
+    <% counter = 0 %>
+    <% @recipe.steps.each do |step| %>
+    <p class="single-step"><%= counter += 1 %>)
+    <%= step.step %></p>
+    <% end %>
+
+    <% if current_admin %>
+        <%= link_to 'Edit', edit_recipe_path(@recipe) %> |
+        <%= link_to 'Back', recipes_path %>
+    <% end %>
+
+      </div>
+    </div>
+  </div>
+
+
+<div class="col-md-5 col-sm-6">
+  <div class="post-container">
+    <div class="post-content no-padding recipe-image">
+        <img src="<%= @recipe.image %>" alt="Image not available" >
+    </div>
+  </div>
+</div>

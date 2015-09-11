@@ -31,6 +31,14 @@ module SessionsHelper
     end
   end
 
+  def current_admin
+    if current_user 
+      if User.find(current_user.id).admin == "125905"
+        @current_admin = true
+      end
+    end
+  end
+
   def redirect_back_or(default)
     redirect_to(session[:forwarding_url] || default)
     session.delete(:forwarding_url)

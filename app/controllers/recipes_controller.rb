@@ -10,22 +10,28 @@ class RecipesController < ApplicationController
   # GET /recipes/1
   # GET /recipes/1.json
   def show
-    @step = Step.new
+    @recipe = Recipe.find_by(id: params[:id])
+    if @recipe.views != nil 
+      views = @recipe.views
+      @recipe.update(views: views + 1)
+    else
+      @recipe.update(views: 1)
+    end
   end
 
   def breakfast_recipes
    recipes = Recipe.where(food_category_id: 1)
-    @recipes = recipes.paginate(page: params[:page], per_page: 6)
+    @recipes = recipes.paginate(page: params[:page], per_page: 3)
   end
 
   def lunch_recipes
    recipes = Recipe.where(food_category_id: 2)
-    @recipes = recipes.paginate(page: params[:page], per_page: 6)
+    @recipes = recipes.paginate(page: params[:page], per_page: 3)
   end
 
   def dinner_recipes
    recipes = Recipe.where(food_category_id: 3)
-    @recipes = recipes.paginate(page: params[:page], per_page: 6)
+    @recipes = recipes.paginate(page: params[:page], per_page: 3)
   end
 
   # GET /recipes/new
@@ -53,6 +59,10 @@ class RecipesController < ApplicationController
           @recipe.update(food_category_id: 2)
         elsif @recipe.placement == "dinner"
           @recipe.update(food_category_id: 3)
+        elsif @recipe.placement == "snacks"
+          @recipe.update(food_category_id: 4)
+        elsif @recipe.placement == "dessert"
+          @recipe.update(food_category_id: 5)
         end
 
         
@@ -77,6 +87,10 @@ class RecipesController < ApplicationController
           @recipe.update(food_category_id: 2)
         elsif @recipe.placement == "dinner"
           @recipe.update(food_category_id: 3)
+        elsif @recipe.placement == "snacks"
+          @recipe.update(food_category_id: 4)
+        elsif @recipe.placement == "dessert"
+          @recipe.update(food_category_id: 5)
         end
         format.html { redirect_to @recipe, notice: 'Recipe was successfully updated.' }
         format.json { render :show, status: :ok, location: @recipe }
@@ -105,6 +119,6 @@ class RecipesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def recipe_params
-      params[:recipe].permit(:title, :difficulty, :time, :taste_rating, :confirmed_gf, :user_id, :placement)
+      params[:recipe].permit(:title, :difficulty, :time, :taste_rating, :confirmed_gf, :user_id, :placement, :votes, :views, :description)
     end
-end
+  end

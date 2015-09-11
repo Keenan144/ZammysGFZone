@@ -11,6 +11,10 @@
  * file per style scope.
  *
  * require_tree .
+ *= require recipes
+ *= require static_pages
+ *= require blog_posts
+ *= require comments
  *= require style
  *= require animate
  *= require bootstrap
@@ -24,17 +28,28 @@
   background: url('../img/IMG_2946.jpg');
 }
 
-.featured-img {
-  max-height: 180px;
+.bottom {
+  margin-bottom: -100px;
 }
-.portfolio-item {
-  max-height: 259px;
+.fa-star {
+  color: gold;
 }
-.feat-img {
-  margin-top: -50px; /* ADDED */
+.fa-exclamation {
+  color: red;
 }
-.quote-top{
-  color: orange;
+.body {
+  min-height: 500px;
+}
+.top-user-show {
+  height: 20%;
+  max-height: 200px;
+  min-height: 100px;
+  background-color: black;
+  margin-top: -10px;
+  width: 100%;
+}
+#bottom{
+  background-color: black;
 }
 .fa-heart {
   color: red;
@@ -45,7 +60,28 @@
 .navbar-default {
   background-color: transparent;
 }
-.login-container {
+.post-id {
+  float: right;
+  margin-top: -40px;
+}
+.footer-logo{
+  float: right;
+}
+
+
+/*.featured-img {
+  max-height: 180px;
+}
+.portfolio-item {
+  max-height: 259px;
+}
+.feat-img {
+  margin-top: -50px;
+}
+.quote-top{
+  color: orange;
+}*/
+/*.login-container {
   max-width: 400px;
   min-width: 250px;
 }
@@ -63,22 +99,8 @@
   position: relative;
   margin-right: 50%;
   margin-left: 38%;
-}
-.body {
-  min-height: 500px;
-}
-.top-user-show {
-  height: 20%;
-  max-height: 200px;
-  min-height: 100px;
-  background-color: black;
-  margin-top: -10px;
-  width: 100%;
-}
-#bottom{
-  background-color: black;
-}
-.blog-post-content {
+}*/
+/*.blog-post-content {
   text-decoration: none;
   min-height: 100px;
   max-height: 200px;
@@ -107,18 +129,9 @@
 .blog-post-image {
   max-width: 400px;
   overflow: hidden;
-}
-.bottom {
-  margin-bottom: -100px;
-}
-.fa-star {
-  color: gold;
-}
-.fa-exclamation {
-  color: red;
-}
+}*/
 
-.make-comment {
+/*.make-comment {
   margin-top: 20px;
 }
 .comments-area{
@@ -149,15 +162,9 @@
   width: 200px;
   margin-right: auto;
   margin-left: auto;
-}
-.post-id {
-  float: right;
-  margin-top: -40px;
-}
+}*/
 
-.site-visits {
+/*.site-visits {
   max-height: 600px;
   overflow: scroll;
-}
-
-
+}*/

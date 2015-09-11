@@ -2,3 +2,39 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.featured-img {
+  max-height: 180px;
+}
+.portfolio-item {
+  max-height: 259px;
+}
+.feat-img {
+  margin-top: -50px;
+}
+.quote-top{
+  color: orange;
+}
+.login-container {
+  max-width: 400px;
+  min-width: 250px;
+}
+.checkbox {
+  margin-left: 18px;
+}
+.login-button {
+  width: 100px;
+  position: relative;
+  margin-right: 50%;
+  margin-left: 38%;
+}
+.sign-up-button {
+  width: 150px;
+  position: relative;
+  margin-right: 50%;
+  margin-left: 38%;
+}
+
+.site-visits {
+  max-height: 600px;
+  overflow: scroll;
+}

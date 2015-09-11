@@ -6,4 +6,7 @@ class BlogPost < ActiveRecord::Base
   has_many :fast_foods
   has_many :foods
   has_many :recipes
+
+  validates :title, presence: true, uniqueness: true
+  validates :blog_content, presence: true
 end

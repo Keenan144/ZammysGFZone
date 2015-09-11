@@ -32,12 +32,12 @@
   </div>
 </div>
 
-
+<div class="recipe-paginator">
 <%= render @recipes.order("created_at DESC")%>
 
 <br>
 
 <%= will_paginate @recipes %>
+</div>
 
 
-<%= link_to 'Back', root_path %>

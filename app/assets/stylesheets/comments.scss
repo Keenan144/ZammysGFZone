@@ -1,3 +1,38 @@
 // Place all the styles related to the Comments controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+
+.make-comment {
+  margin-top: 20px;
+}
+.comments-area{
+  max-width: 701px;
+  min-width: 200px;
+  width: 100%;
+  border: 1px solid black;
+  margin-right: auto;
+  margin-left: auto;
+}
+.a-blog-post-comment {
+  max-height: 500px;
+  min-height: 50px;
+  max-width: 600px;
+  min-width: 190px;
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 2px;
+  border: 1px solid black;
+}
+.create-comment-div {
+  width: 200px;
+  margin-right: auto;
+  margin-left: auto;
+}
+.create-comment {
+  width: 200px;
+  margin-right: auto;
+  margin-left: auto;
+}
