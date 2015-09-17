@@ -1,26 +1,27 @@
 
-<div class="top-user-show">
-</div>
-<br>
-<br>
+<%= render "layouts/blackspacer" %>
+
 <% if current_admin %>
+
 <div class="container-fluid">
   <div class="row">
     <div class="col-sm-8 col-md-2 sidebar">
-      <br>
-      <!-- ^^ cheap spacer -->
+      <br> <!-- cheap spacer -->
       <ul class="nav nav-sidebar">
         <li><%= link_to 'New Blog Post', new_blog_post_path%></li>
         <li><%= link_to 'New Food Item', new_food_path %></li>
         <li><%= link_to 'New Recipe', new_recipe_path%></li>
-        <li><% link_to 'New Fast Food Place', new_fast_food_path%></li>
-        <li><% link_to 'New Restaurant Place', new_restaurant_path%></li>
-        <li><% link_to 'Edit User Posts', user_posts_path%></li>
+
+        <!-- Not in use  -->
+        <!-- <li><% link_to 'New Fast Food Place', new_fast_food_path%></li> -->
+        <!-- <li><% link_to 'New Restaurant Place', new_restaurant_path%></li> -->
+        <!-- <li><% link_to 'Edit User Posts', user_posts_path%></li> -->
+
 
       </ul>
     </div>
-    <div class="col-md-10">
-      <h2 class="sub-header">Last Logins</h2>
+    <div class="col-md-8">
+      <h2 class="sub-header" align="center">Last Logins</h2>
         <div class="table-responsive">
           <table class="table table-bordered">
           <thead>
@@ -33,10 +34,9 @@
                 <tr>
                   <td><%= user.username %></td>
                   <% if user.last_login %>
-                    <% time = Time.parse(user.last_login.to_s) %>
-                    <td><%= time.in_time_zone("Central Time (US & Canada)").strftime('%D %r') %></td>
+                  <td><%= self.central_time(user.last_login) %></td>
                   <% else %>
-                    <td> / </td>
+                    <td> System OK </td>
                   <% end %>
                 </tr>
               <% end %>
@@ -44,7 +44,7 @@
         </div>
       </div>
       <div class="col-md-10">
-        <h2 class="sub-header">Totals</h2>
+        <h2 class="sub-header" align="center">Totals</h2>
           <div class="table-responsive">
             <table class="table table-bordered">
             <thead>
@@ -76,7 +76,7 @@
         </div>
 
         <div class="col-md-10">
-        <h2 class="sub-header">Site Metrics</h2>
+        <h2 class="sub-header" align="center">Site Metrics</h2>
           <div class="table-responsive">
             <table class="table table-bordered">
             <thead>
@@ -98,33 +98,33 @@
         </div>
 
 
-        <div class="col-md-10">
-        <h2 class="sub-header">Site Visits</h2>
-          <div class="table-responsive site-visits">
-            <table class="table table-bordered">
-            <thead>
-              <tr>
-                <th>Site Visit IPAddress</th>
-                <th>Visited at</th>
-                <th>Visits</th>
-                <th>NickName</th>
-                <th>delete?</th>
-              </tr>
-            </thead>
+    <div class="col-md-10">
+      <h2 class="sub-header" align="center">Site Visits</h2>
+      <div class="table-responsive site-visits">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Site Visit IPAddress</th>
+              <th>Visited at</th>
+              <th>Visits</th>
+              <th>NickName</th>
+              <th>delete?</th>
+            </tr>
+          </thead>
 
-            <% Visit.all.reverse.each do |visit| %>
-            <% time = Time.parse(visit.updated_at.to_s).in_time_zone("Central Time (US & Canada)") %>
-              <tr>
-                <td><%= visit.ipaddress %></td>
-                <td><%= time.strftime("Visited on %m/%d/%Y at %I:%M%p")%></td>
-                <td><%= visit.login_count %></td>
-                <td><%= visit.nickname %></td>
-                <td><%= link_to 'delete', visit, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-              </tr>
-              <% end %>
-             </table>
-          </div>
-        </div>
+          <% Visit.order(:updated_at).each do |visit| %>
+          <% time = Time.parse(visit.updated_at.to_s).in_time_zone("Central Time (US & Canada)") %>
+            <tr>
+              <td><%= visit.ipaddress %></td>
+              <td><%= time.strftime("Visited on %m/%d/%Y at %I:%M%p")%></td>
+              <td><%= visit.login_count %></td>
+              <td><%= visit.nickname %></td>
+              <td><%= link_to 'delete', visit, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+    </div>
   </div>
 </div>
 <% end %>
