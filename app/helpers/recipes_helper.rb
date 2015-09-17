@@ -14,5 +14,11 @@ module RecipesHelper
     end 
   end
 
+  def vote_up(recipe_id)
+    recipe = Recipe.find(recipe_id)
+    votes = recipe.votes
+    recipe.update(votes: votes + 1)
+  end
+
 
 end

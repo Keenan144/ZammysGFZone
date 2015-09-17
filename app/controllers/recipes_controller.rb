@@ -15,6 +15,7 @@ class RecipesController < ApplicationController
     comments = @recipe.comments
     @comments = comments.paginate(page: params[:page], per_page: 10)
     @comment = Comment.new
+
     if @recipe.views != nil 
       views = @recipe.views
       @recipe.update(views: views + 1)
@@ -47,6 +48,26 @@ class RecipesController < ApplicationController
   # GET /recipes/1/edit
   def edit
     @step = Step.new
+  end
+
+  def upvote
+    @recipe = Recipe.find(params[:id])
+    votes = @recipe.votes
+    if votes == nil 
+      votes = 0
+    end
+    @recipe.update(votes: votes + 1)
+    redirect_to(@recipe)
+  end
+
+  def downvote
+    @recipe = Recipe.find(params[:id])
+    votes = @recipe.votes
+    if votes == nil 
+      votes = 0
+    end
+    @recipe.update(votes: votes - 1)
+    redirect_to(@recipe)
   end
 
   # POST /recipes

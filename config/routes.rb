@@ -49,10 +49,6 @@ Rails.application.routes.draw do
   get '/archives/folder/december' => 'archives#december'
 
 
-  get '/like/blog_post/:id' => 'likes#like-blogpost'
-  get '/like/comment/:id' => 'likes#like-comment'
-  get '/like/recipe/:id' => 'likes#like-recipe'
-
 
 
 
@@ -61,7 +57,14 @@ Rails.application.routes.draw do
   resources :user_posts
   resources :comments
   resources :replies
-  resources :recipes
+  resources :recipes do
+    member do
+      post 'upvote'
+    end
+    member do
+      post 'downvote'
+    end
+  end
   resources :restaurants
   resources :fast_foods
   resources :foods

@@ -10,11 +10,16 @@
       <div class="post-content no-padding" align="center">
         <h2><%= @recipe.title %></h2>
         <h5><small><%= @recipe.placement %> Foods</small></h5>
+
+        <div class="voters">
+          <%= link_to '+1', upvote_recipe_path(@recipe), method: :post, class: "btn btn-success" %>
+          <%= link_to '-1', downvote_recipe_path(@recipe), method: :post, class: "btn btn-danger" %>
+        </div>
       </div>
+
 
     <div class="post-content">
       <p class="content">
-
         <div class="diff-rate">
           <small><%= self.determine_diff(@recipe.difficulty.to_i) %></small>
           <% @recipe.difficulty.to_i.times do |star| %> 
