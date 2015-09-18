@@ -1,1 +1,45 @@
-desserts.html.erb
+<div class="top-user-show">
+</div>
+
+<div id="featured">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 col-sm-4">
+        <div class="featured-container">
+          <div class="featured-img">
+            <img class="feat-img" src="img/cookie-1.jpg" alt="">
+            <h3 class="feat-img-text"><a href="/dessert/food_items">Food Items</a></h3>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-4">
+        <div class="featured-container">
+          <div class="featured-img">
+            <img class="feat-img" src="img/cookie-1.jpg" alt="">
+            <h3><a href="/dessert/recipes">Recipes</a></h3>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-4">
+        <div class="featured-container">
+          <div class="featured-img">
+            <img class="feat-img" src="img/cookie-1.jpg" alt="">
+            <h3><a href="/dessert/snacks">Snacks</a></h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<section id="content">
+  <div class="container">
+    <div class="recipe-paginator">
+  
+<%= render @recipes.order("created_at DESC")%>
+
+<br>
+
+<%= will_paginate @recipes %>
+    </div>
+  </div>
+</section>
