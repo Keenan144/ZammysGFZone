@@ -1,11 +1,10 @@
 <h1>Editing Blog Post</h1>
-<% if current_user %>
-  <% if current_user.admin == "125905" %>
-  
-    <%= render 'form' %>
-    <%= link_to 'Show', @blog_post %> |
-    <%= link_to 'Back', blog_posts_path %>
+<% if current_admin %>
 
-  <% end %>
+  <%= render 'form' %>
+  <%= link_to 'Show', @blog_post %> |
+  <%= link_to 'Back', blog_posts_path %>
+
 <% end %>
+
 

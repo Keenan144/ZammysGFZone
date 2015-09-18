@@ -1,4 +1,5 @@
-<p id="notice"><%= notice %></p>
+<% if current_admin %>
+
 
 <h1>Listing Archives</h1>
 
@@ -23,3 +24,6 @@
 <br>
 
 <%= link_to 'New Archive', new_archive_path %>
+
+
+<% end %>

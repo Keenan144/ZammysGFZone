@@ -28,7 +28,7 @@
                 <% if current_user == nil %>
                 <li><a href="/login"><i class="fa fa-sign-in"></i> Login</a>
                 <% else %>
-                <li><%= link_to 'Profile', user_path(current_user) %></li>
+                <!-- <li><%= link_to 'Profile', user_path(current_user) %></li> -->
                   <% if current_user.admin == "125905" %>
                   <li><a href="/admin"><i class="fa fa-book"></i> Admin</a></li>
                   <% end %>

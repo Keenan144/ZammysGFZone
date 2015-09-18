@@ -43,6 +43,11 @@ class FoodsController < ApplicationController
   def dinner_snacks
   end
 
+  def dessert_food_items
+    foods = Food.where(food_category_id: 5)
+    @foods = foods.paginate(page: params[:page], per_page: 6)
+  end
+
 
 
 

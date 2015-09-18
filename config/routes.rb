@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   get '/breakfast' => 'food_categories#breakfast'
   get '/lunch' => 'food_categories#lunch'
   get '/dinner' => 'food_categories#dinner'
+  get '/dessert' => 'food_categories#dessert'
 
   get '/breakfast/food_items' => 'foods#breakfast_food_items'
   get '/breakfast/recipes' => 'recipes#breakfast_recipes'
@@ -35,6 +36,10 @@ Rails.application.routes.draw do
   get '/dinner/food_items' => 'foods#dinner_food_items'
   get '/dinner/recipes' => 'recipes#dinner_recipes'
   get '/dinner/snacks' => 'foods#dinner_food_items'
+
+  get '/dessert/food_items' => 'foods#dessert_food_items'
+  get '/dessert/recipes' => 'recipes#dessert_recipes'
+  get '/dessert/snacks' => 'foods#dessert_food_items'
 
 
   get '/archives/folder/january' => 'archives#january'

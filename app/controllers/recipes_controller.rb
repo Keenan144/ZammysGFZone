@@ -39,6 +39,11 @@ class RecipesController < ApplicationController
     @recipes = recipes.paginate(page: params[:page], per_page: 3)
   end
 
+  def dessert_recipes
+    recipes = Recipe.where(food_category_id: 5)
+    @recipes = recipes.paginate(page: params[:page], per_page: 3)
+  end
+
   # GET /recipes/new
   def new
     @recipe = Recipe.new

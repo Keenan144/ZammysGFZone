@@ -112,7 +112,7 @@
             </tr>
           </thead>
 
-          <% Visit.order(:updated_at).each do |visit| %>
+          <% Visit.order(:created_at).reverse.each do |visit| %>
           <% time = Time.parse(visit.updated_at.to_s).in_time_zone("Central Time (US & Canada)") %>
             <tr>
               <td><%= visit.ipaddress %></td>

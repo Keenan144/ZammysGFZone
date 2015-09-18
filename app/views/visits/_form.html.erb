@@ -1,3 +1,5 @@
+<% if current_admin %>
+
 <%= form_for(@visit) do |f| %>
   <% if @visit.errors.any? %>
     <div id="error_explanation">
@@ -14,4 +16,6 @@
   <div class="actions">
     <%= f.submit %>
   </div>
+<% end %>
+
 <% end %>

@@ -1,3 +1,5 @@
+<% if current_admin %>
+
 <%= form_for(@food_category) do |f| %>
   <% if @food_category.errors.any? %>
     <div id="error_explanation">
@@ -14,4 +16,5 @@
   <div class="actions">
     <%= f.submit %>
   </div>
+<% end %>
 <% end %>
