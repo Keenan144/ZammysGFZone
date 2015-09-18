@@ -11,9 +11,8 @@
         <h2><%= recipe.title %></h2>
         <h5><small><%= self.determine_diff(recipe.difficulty) %> difficulty 
         <%= recipe.placement %> recipe</small></h5>
-          <p class="blog-post-content"><% counter = 0 %>
+          <p class="blog-post-content">
             <% recipe.steps.first(3).each do |step| %>
-            <%= counter += 1 %>)
             <%= step.step %><br>
             <% end %>
           </p>
