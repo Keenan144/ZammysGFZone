@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   get '/about' => 'static_pages#about'
   get '/contact' => 'static_pages#contact'
   get '/admin' => 'static_pages#admin'
+  get '/terms' => 'static_pages#termsofservice'
 
   get '/breakfast' => 'food_categories#breakfast'
   get '/lunch' => 'food_categories#lunch'

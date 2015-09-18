@@ -30,6 +30,10 @@ class StaticPagesController < ApplicationController
     SystemMetric.first.update(about_views: views + 1)
   end
 
+  def termsofservice
+
+  end
+
   def contact
 
   end
