@@ -11,6 +11,17 @@
     </div>
   <% end %>
 
+<%= f.label :step %>
+<%= f.text_field :step, class: 'form-control' %>
+
+<%= f.label :image %>
+<%= f.text_field :image, class: 'form-control' %>
+
+<%= f.label :link %>
+<%= f.text_field :link, class: 'form-control' %>
+
+<%= f.hidden_field :user_id, :value => current_user.id %>
+
   <div class="actions">
     <%= f.submit %>
   </div>

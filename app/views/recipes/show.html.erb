@@ -10,11 +10,16 @@
       <div class="post-content no-padding" align="center">
         <h2><%= @recipe.title %></h2>
         <h5><small><%= @recipe.placement %> Foods</small></h5>
-
+        <% if current_user %>
         <div class="voters">
           <%= link_to '+1', upvote_recipe_path(@recipe), method: :post, class: "btn btn-success" %>
           <%= link_to '-1', downvote_recipe_path(@recipe), method: :post, class: "btn btn-danger" %>
         </div>
+        <% else %>
+        <div class="voters">
+          <p align="center">To rate, please log in <a href="/login">here</a>.</p>
+        </div>
+        <% end %>
       </div>
 
 
@@ -27,10 +32,12 @@
           <% end %>
         </div>
 
-        <% counter = 0 %>
-        <% @recipe.steps.each do |step| %>
-        <p class="single-step"><%= counter += 1 %>)
-        <%= step.step %></p>
+        <% @recipe.steps.order(:id).each do |step| %>
+        <p class="single-step"><%= step.step %>
+          <% if current_admin %>
+              <%= link_to 'Edit', edit_step_path(step) %>
+          <% end %>
+        </p>
         <% end %>
 
         <% if current_admin %>
