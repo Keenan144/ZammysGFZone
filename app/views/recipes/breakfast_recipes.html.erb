@@ -1,7 +1,13 @@
 <div class="top-user-show">
 </div>
+<section id="content">
+  <div class="container">
+    <h2 align="center">Breakfast Recipes</h2><br>
+    <hr>
 <%= render @recipes.order("created_at DESC")%>
 
 <br>
 
 <%= will_paginate @recipes %>
+  </div>
+</section>
