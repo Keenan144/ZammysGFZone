@@ -14,7 +14,6 @@ FoodCategory.new(category_name: "dinner").save
 FoodCategory.new(category_name: "snacks").save
 FoodCategory.new(category_name: "dessert").save
 
-User.new(username: "ADMIN", password_digest: "125905", admin: "125905").save
 BlogPost.new(site_url: "http://zammysgfzone.herokuapp.com/", title: "Commenting", blog_content: "Please use our new comment features to more easily let us know how you feel about the site! To comment you need to make an account, but fear not we only need a username and password! Comment away!", user_id: 1, image_url: "http://devsteam.com/wp-content/uploads/2013/08/Blog-Commenting.jpg" ).save
 
 
