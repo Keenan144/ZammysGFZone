@@ -41,6 +41,13 @@ class BlogPostsController < ApplicationController
       votes = 0
     end
     @blog_post.update(votes: votes + 1)
+
+    like = Like.find_by(blog_post_id: @blog_post.id, user_id: current_user.id)
+    if like != nil
+      like.update(bool: true)
+    else 
+      Like.new(blog_post_id: @blog_post.id, user_id: current_user.id, bool: true).save
+    end
     redirect_to(@blog_post)
   end
 
@@ -51,6 +58,13 @@ class BlogPostsController < ApplicationController
       votes = 0
     end
     @blog_post.update(votes: votes - 1)
+
+    like = Like.find_by(blog_post_id: @blog_post.id, user_id: current_user.id)
+    if like != nil
+      like.update(bool: false)
+    else 
+      Like.new(blog_post_id: @blog_post.id, user_id: current_user.id, bool: false).save
+    end
     redirect_to(@blog_post)
   end
 
