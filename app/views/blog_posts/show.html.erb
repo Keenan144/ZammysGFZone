@@ -38,7 +38,7 @@
               <%= link_to 'Like', upvote_blog_post_path(@blog_post), method: :post, class: "btn btn-success" %>
 
             <% end %>
-            
+
           <% else %>
         <div class="voters">
           <%= link_to '+1', upvote_blog_post_path(@blog_post), method: :post, class: "btn btn-success" %>
@@ -91,6 +91,7 @@
   <%= render @comments.order("created_at DESC")%>
   <%= will_paginate @comments %>
 </div>
+
 <div class="make-comment">
   <%= render "comments/form"%>
 </div>
