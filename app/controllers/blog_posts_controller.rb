@@ -32,6 +32,7 @@ class BlogPostsController < ApplicationController
 
   # GET /blog_posts/1/edit
   def edit
+
   end
 
   def upvote

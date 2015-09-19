@@ -62,6 +62,12 @@ class RecipesController < ApplicationController
       votes = 0
     end
     @recipe.update(votes: votes + 1)
+    like = Like.find_by(recipe_id: @recipe.id, user_id: current_user.id)
+    if like != nil
+      like.update(bool: true)
+    else 
+      Like.new(recipe_id: @recipe.id, user_id: current_user.id, bool: true).save
+    end
     redirect_to(@recipe)
   end
 
@@ -72,6 +78,12 @@ class RecipesController < ApplicationController
       votes = 0
     end
     @recipe.update(votes: votes - 1)
+    like = Like.find_by(recipe_id: @recipe.id, user_id: current_user.id)
+    if like != nil
+      like.update(bool: false)
+    else 
+      Like.new(recipe_id: @recipe.id, user_id: current_user.id, bool: false).save
+    end
     redirect_to(@recipe)
   end
 
