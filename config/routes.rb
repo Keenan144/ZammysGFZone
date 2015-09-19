@@ -59,7 +59,14 @@ Rails.application.routes.draw do
 
 
   resources :food_categories
-  resources :blog_posts
+  resources :blog_posts do
+    member do
+      post 'upvote'
+    end
+    member do
+      post 'downvote'
+    end
+  end
   resources :user_posts
   resources :comments
   resources :replies

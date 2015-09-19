@@ -34,6 +34,26 @@ class BlogPostsController < ApplicationController
   def edit
   end
 
+  def upvote
+    @blog_post = BlogPost.find(params[:id])
+    votes = @blog_post.votes
+    if votes == nil 
+      votes = 0
+    end
+    @blog_post.update(votes: votes + 1)
+    redirect_to(@blog_post)
+  end
+
+  def downvote
+    @blog_post = BlogPost.find(params[:id])
+    votes = @blog_post.votes
+    if votes == nil 
+      votes = 0
+    end
+    @blog_post.update(votes: votes - 1)
+    redirect_to(@blog_post)
+  end
+
   # POST /blog_posts
   # POST /blog_posts.json
   def create

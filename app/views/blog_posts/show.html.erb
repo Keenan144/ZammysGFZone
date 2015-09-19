@@ -16,10 +16,21 @@
             <%= link_to 'Edit', edit_blog_post_path(@blog_post) %>
           <% end %>
         </h1>
-
         <h3>
-          <%= User.find(@blog_post.user_id).username %>
+          Posted by: <%= User.find(@blog_post.user_id).username %>
         </h3>
+        <% if current_user %>
+        <div class="voters">
+          <%= link_to '+1', upvote_blog_post_path(@blog_post), method: :post, class: "btn btn-success" %>
+          <%= link_to '-1', downvote_blog_post_path(@blog_post), method: :post, class: "btn btn-danger" %>
+        </div>
+        <% else %>
+        <div class="voters">
+          <p align="center">To rate, please log in <a href="/login">here</a>.</p>
+        </div>
+        <% end %>
+        <br>
+
 
         <% if @blog_post.site_url != "" %>
             <a href="<%=@blog_post.site_url%>">Visit <%=@blog_post.site_url%></a><br><br>
