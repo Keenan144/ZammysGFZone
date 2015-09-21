@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :save_my_previous_url 
 
 
   # GET /users
@@ -69,5 +70,11 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:username, :password )
   end
+
+  def save_my_previous_url
+      # session[:previous_url] is a Rails built-in variable to save last url.
+      session[:my_previous_url] = URI(request.referer || '').path
+      @back_url = session[:my_previous_url]
+    end
 end
 

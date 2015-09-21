@@ -1,5 +1,6 @@
 class BlogPostsController < ApplicationController
   before_action :set_blog_post, only: [:show, :edit, :update, :destroy]
+  before_action :save_my_previous_url 
 
   # GET /blog_posts
   # GET /blog_posts.json
@@ -119,5 +120,11 @@ class BlogPostsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def blog_post_params
       params[:blog_post].permit(:title, :site_url, :blog_content, :user_id, :votes, :image_url )
+    end
+
+    def save_my_previous_url
+      # session[:previous_url] is a Rails built-in variable to save last url.
+      session[:my_previous_url] = URI(request.referer || '').path
+      @back_url = session[:my_previous_url]
     end
 end

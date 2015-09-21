@@ -1,5 +1,6 @@
 class RecipesController < ApplicationController
   before_action :set_recipe, only: [:show, :edit, :update, :destroy]
+  before_action :save_my_previous_url 
 
   # GET /recipes
   # GET /recipes.json
@@ -10,6 +11,7 @@ class RecipesController < ApplicationController
   # GET /recipes/1
   # GET /recipes/1.json
   def show
+    
 
     @recipe = Recipe.find_by(id: params[:id])
     comments = @recipe.comments
@@ -25,33 +27,39 @@ class RecipesController < ApplicationController
   end
 
   def breakfast_recipes
+    
    recipes = Recipe.where(food_category_id: 1)
     @recipes = recipes.paginate(page: params[:page], per_page: 3)
   end
 
   def lunch_recipes
+    
    recipes = Recipe.where(food_category_id: 2)
     @recipes = recipes.paginate(page: params[:page], per_page: 3)
   end
 
   def dinner_recipes
+    
    recipes = Recipe.where(food_category_id: 3)
     @recipes = recipes.paginate(page: params[:page], per_page: 3)
   end
 
   def dessert_recipes
+    
     recipes = Recipe.where(food_category_id: 5)
     @recipes = recipes.paginate(page: params[:page], per_page: 3)
   end
 
   # GET /recipes/new
   def new
+    
     @recipe = Recipe.new
     @step = Step.new
   end
 
   # GET /recipes/1/edit
   def edit
+    
     @step = Step.new
     @ingredient = Ingredient.new
   end
@@ -91,6 +99,7 @@ class RecipesController < ApplicationController
   # POST /recipes
   # POST /recipes.json
   def create
+    
     @recipe = Recipe.new(recipe_params)
 
     respond_to do |format|
@@ -147,6 +156,7 @@ class RecipesController < ApplicationController
   # DELETE /recipes/1
   # DELETE /recipes/1.json
   def destroy
+    
     @recipe.destroy
     respond_to do |format|
       format.html { redirect_to recipes_url, notice: 'Recipe was successfully destroyed.' }
@@ -163,5 +173,11 @@ class RecipesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def recipe_params
       params[:recipe].permit(:title, :difficulty, :time, :taste_rating, :confirmed_gf, :user_id, :placement, :votes, :views, :description, :image)
+    end
+
+    def save_my_previous_url
+      # session[:previous_url] is a Rails built-in variable to save last url.
+      session[:my_previous_url] = URI(request.referer || '').path
+      @back_url = session[:my_previous_url]
     end
   end

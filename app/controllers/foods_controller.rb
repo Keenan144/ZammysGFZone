@@ -1,5 +1,6 @@
 class FoodsController < ApplicationController
   before_action :set_food, only: [:show, :edit, :update, :destroy]
+  before_action :save_my_previous_url
 
   # GET /foods
   # GET /foods.json
@@ -111,5 +112,11 @@ class FoodsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def food_params
       params[:food].permit(:name, :confirmed_gf, :price, :taste, :difficulty, :where_to_find, :food_category_id)
+    end
+    
+    def save_my_previous_url
+      # session[:previous_url] is a Rails built-in variable to save last url.
+      session[:my_previous_url] = URI(request.referer || '').path
+      @back_url = session[:my_previous_url]
     end
 end

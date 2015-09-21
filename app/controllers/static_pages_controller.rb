@@ -1,4 +1,5 @@
 class StaticPagesController < ApplicationController
+before_action :save_my_previous_url 
 
   # GET /static_pages
   # GET /static_pages.json
@@ -105,5 +106,11 @@ class StaticPagesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def static_page_params
       params[:static_page]
+    end
+
+    def save_my_previous_url
+      # session[:previous_url] is a Rails built-in variable to save last url.
+      session[:my_previous_url] = URI(request.referer || '').path
+      @back_url = session[:my_previous_url]
     end
 end

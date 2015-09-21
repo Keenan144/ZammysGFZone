@@ -81,6 +81,16 @@
   background-color: white;
   margin-bottom: 10px;
 }
+.back-button {
+  background-color: #0f101a;
+}
+.btn-custom {
+  margin-left: 20px;
+  text-decoration: none;
+}
+.navbar{
+  background-color: black;
+}
 
 
 /*.featured-img {
