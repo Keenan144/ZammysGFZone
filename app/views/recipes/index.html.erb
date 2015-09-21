@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+<% if current_admin %>
 
 <h1>Listing Recipes</h1>
 
@@ -23,3 +23,4 @@
 <br>
 
 <%= link_to 'New Recipe', new_recipe_path %>
+<% end %>

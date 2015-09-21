@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
 
+  resources :ingredients
   resources :likes
   resources :steps
   resources :archives

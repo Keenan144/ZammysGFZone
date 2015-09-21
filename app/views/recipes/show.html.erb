@@ -7,7 +7,14 @@
 
   <div class="col-md-6 col-sm-6">
     <div class="post-container">
+
       <div class="post-content no-padding" align="center">
+        <div class="diff-rate">
+          <small><%= self.determine_diff(@recipe.difficulty.to_i) %></small>
+          <% @recipe.difficulty.to_i.times do |star| %> 
+              <i class="fa fa-exclamation"></i> 
+          <% end %>
+        </div>
         <h2><%= @recipe.title %></h2>
         <h5><small><%= @recipe.placement %> Foods</small></h5>
         <% if current_user %>
@@ -40,20 +47,27 @@
           <p align="center">To rate, please log in <a href="/login">here</a>.</p>
         </div>
         <% end %>
+        <br>
       </div>
 
 
     <div class="post-content">
-        <div class="diff-rate">
-          <small><%= self.determine_diff(@recipe.difficulty.to_i) %></small>
-          <% @recipe.difficulty.to_i.times do |star| %> 
-              <i class="fa fa-exclamation"></i> 
-          <% end %>
-        </div>
       <p class="content">
+        <h5 align="center">Ingredients</h5>
+          <% @recipe.ingredients.order(:id).each do |ingredient| %>
+          <p class="single-step"><small><%= ingredient.amount %> <%= ingredient.name %></small>
+            <% if current_admin %>
+                <%= link_to 'Edit', edit_ingredient_path(ingredient) %>
+            <% end %>
+          </p>
+          <% end %>
 
+        <hr>
+        <h5 align="center">Steps</h5>
+        <% counter = 1 %>
         <% @recipe.steps.order(:id).each do |step| %>
-        <p class="single-step"><%= step.step %>
+        <p class="single-step"> <%= counter %>) <%= step.step %>
+          <% counter += 1 %>
           <% if current_admin %>
               <%= link_to 'Edit', edit_step_path(step) %>
           <% end %>

@@ -6,6 +6,32 @@
 
 <% if @recipe.id != nil %>
 
+
+<% Ingredient.where(recipe_id: @recipe.id).each do |ingredient| %>
+<%= ingredient.amount %> <%= ingredient.name %><br>
+<%end%>
+
+  <div class="ingredients"></div>
+
+  <div class="new-ingredient">
+    <button>new ingredient</button>
+  </div>
+
+  <script type="text/javascript">
+
+  $('.new-ingredient').click(function(e) {
+      e.preventDefault();
+      // Normal code goes here but you no longer need return false;
+      $('.new-ingredient').hide();
+      $('.new-step').hide();
+      $('.ingredients').append("<%= escape_javascript(
+      render :partial => "ingredient", :object => Ingredient.new)%>");
+          
+  });
+
+  </script>
+
+
 <% Step.where(recipe_id: @recipe.id).each do |step| %>
 <%= step.step %><br>
 <%end%>
@@ -23,6 +49,7 @@
       e.preventDefault();
       // Normal code goes here but you no longer need return false;
       $('.new-step').hide();
+      $('.new-ingredient').hide();
       $('.steps').append("<%= escape_javascript(
       render :partial => "step", :object => Step.new)%>");
           
@@ -31,5 +58,3 @@
   </script>
 <% end %>
 
-<%= link_to 'Show', @recipe %> |
-<%= link_to 'Back', recipes_path %>

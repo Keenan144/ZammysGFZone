@@ -53,6 +53,7 @@ class RecipesController < ApplicationController
   # GET /recipes/1/edit
   def edit
     @step = Step.new
+    @ingredient = Ingredient.new
   end
 
   def upvote
