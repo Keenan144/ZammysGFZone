@@ -8,6 +8,14 @@ gem 'pg'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 
+gem 'json'
+
+# Facebook authentication
+gem 'omniauth-facebook' 
+
+# Facebook API
+gem "koala", "~> 1.10.0rc" 
+
 gem 'will_paginate',           '3.0.7'
 gem 'bootstrap-will_paginate', '0.0.10'
 

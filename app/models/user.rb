@@ -14,6 +14,13 @@ class User < ActiveRecord::Base
 
 
     # Returns true if the given token matches the digest.
+  def self.koala(auth)
+    access_token = auth['token']
+    facebook = Koala::Facebook::API.new(access_token)
+    hash = facebook.get_object("me?fields=name,picture") 
+  end
+
+
   def authenticated?(remember_token)
     return false if remember_digest.nil?
     BCrypt::Password.new(remember_digest).is_password?(remember_token)

@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   resources :visits
   root 'static_pages#home'
 
+  get 'auth/facebook', as: "auth_provider"
+  get 'auth/facebook/callback', to: 'users#login'
 
   get 'signup'  => 'users#new'
   get 'logout'  => 'sessions#destroy'
