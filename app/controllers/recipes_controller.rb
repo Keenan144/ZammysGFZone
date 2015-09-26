@@ -28,19 +28,19 @@ class RecipesController < ApplicationController
 
   def breakfast_recipes
     
-   recipes = Recipe.where(food_category_id: 1)
+   recipes = Recipe.where(food_category_id: [1,6])
     @recipes = recipes.paginate(page: params[:page], per_page: 3)
   end
 
   def lunch_recipes
     
-   recipes = Recipe.where(food_category_id: 2)
+   recipes = Recipe.where(food_category_id: [2,6,7])
     @recipes = recipes.paginate(page: params[:page], per_page: 3)
   end
 
   def dinner_recipes
     
-   recipes = Recipe.where(food_category_id: 3)
+   recipes = Recipe.where(food_category_id: [3,7])
     @recipes = recipes.paginate(page: params[:page], per_page: 3)
   end
 
@@ -107,8 +107,12 @@ class RecipesController < ApplicationController
 
         if @recipe.placement == "breakfast"
           @recipe.update(food_category_id: 1)
+        elsif @recipe.placement == "breakfast/lunch"
+          @recipe.update(food_category_id: 6)
         elsif @recipe.placement == "lunch"
           @recipe.update(food_category_id: 2)
+        elsif @recipe.placement == "lunch/dinner"
+          @recipe.update(food_category_id: 7)
         elsif @recipe.placement == "dinner"
           @recipe.update(food_category_id: 3)
         elsif @recipe.placement == "snacks"
@@ -135,8 +139,12 @@ class RecipesController < ApplicationController
       if @recipe.update(recipe_params)
         if @recipe.placement == "breakfast"
           @recipe.update(food_category_id: 1)
+        elsif @recipe.placement == "breakfast/lunch"
+          @recipe.update(food_category_id: 6)
         elsif @recipe.placement == "lunch"
           @recipe.update(food_category_id: 2)
+        elsif @recipe.placement == "lunch/dinner"
+          @recipe.update(food_category_id: 7)
         elsif @recipe.placement == "dinner"
           @recipe.update(food_category_id: 3)
         elsif @recipe.placement == "snacks"

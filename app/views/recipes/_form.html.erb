@@ -33,7 +33,7 @@
 
       <br>
       <%= f.label :placement %>
-      <%= f.select :placement, [ 'breakfast', 'lunch', 'dinner', 'dessert' ], :prompt => 'Select One', class: 'form-control'  %>
+      <%= f.select :placement, [ 'breakfast', 'breakfast/lunch', 'lunch', 'lunch/dinner', 'dinner', 'dessert' ], :prompt => 'Select One', class: 'form-control'  %>
 
       <%= f.hidden_field :user_id, :value => current_user.id %>
 

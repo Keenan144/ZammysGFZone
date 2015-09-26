@@ -27,6 +27,12 @@ class FoodCategoriesController < ApplicationController
     @foods = Food.where(food_category_id: 3)
   end
 
+  def dessert
+    recipes = Recipe.where(food_category_id: 5)
+    @recipes = recipes.paginate(page: params[:page], per_page: 6)
+    @foods = Food.where(food_category_id: 5)
+  end
+
   # GET /food_categories/1
   # GET /food_categories/1.json
   def show
