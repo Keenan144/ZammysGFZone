@@ -83,6 +83,9 @@
 }
 .back-button {
   background-color: #0f101a;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
 }
 .btn-custom {
   margin-left: 20px;

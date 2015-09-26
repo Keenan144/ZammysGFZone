@@ -35,7 +35,7 @@ class RecipesController < ApplicationController
   def lunch_recipes
     
    recipes = Recipe.where(food_category_id: [2,6,7])
-    @recipes = recipes.paginate(page: params[:page], per_page: 3)
+    @recipes = recipes.paginate(page: params[:page], per_page: 6)
   end
 
   def dinner_recipes
