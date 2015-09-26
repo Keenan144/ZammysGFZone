@@ -15,20 +15,18 @@
 
         <%= f.label :remember_me, class: "checkbox" do %>
         <%= f.check_box :remember_me %>
-        <span>Remember me on this computer</span>
+        <span>Remember me on this computer</span><br>
+          New user? <%= link_to "Sign up now!", signup_path %>
         <% end %>
-
         <%= f.submit "Log in", class: "btn btn-primary login-button" %>
       <% end %>
       <br>
-      New user? <%= link_to "Sign up now!", signup_path %>
+        <div align="center">
+          <%= link_to "Sign in with Facebook", '/auth/facebook', class: "btn facebook-button" %>
+        </div>
     </div>
   </div>
-<%= link_to "Facebook Login", '/auth/facebook' %>
 </div>
 <br><br><br><br>
 <br><br><br><br>
 <br><br><br><br>
-
-<%= ENV["facebook_app_id"] %><br>
-<%= ENV["facebook_secret"] %>
