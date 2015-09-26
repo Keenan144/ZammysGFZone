@@ -109,17 +109,19 @@
               <th>Visits</th>
               <th>NickName</th>
               <th>delete?</th>
+              <th>edit</th>
             </tr>
           </thead>
 
           <% Visit.order(:created_at).reverse.each do |visit| %>
-          <% time = Time.parse(visit.updated_at.to_s).in_time_zone("Central Time (US & Canada)") %>
+          <% time = Time.parse(visit.created_at.to_s).in_time_zone("Central Time (US & Canada)") %>
             <tr>
               <td><%= visit.ipaddress %></td>
               <td><%= time.strftime("Visited on %m/%d/%Y at %I:%M%p")%></td>
               <td><%= visit.login_count %></td>
               <td><%= visit.nickname %></td>
               <td><%= link_to 'delete', visit, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              <td><%= link_to 'edit', edit_visit_path(visit) %></td>
             </tr>
           <% end %>
         </table>

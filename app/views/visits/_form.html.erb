@@ -13,9 +13,28 @@
     </div>
   <% end %>
 
-  <div class="actions">
-    <%= f.submit %>
+<br><br><br>
+<br><br><br>
+<br><br><br>
+
+<div class="row white-text">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@visit) do |f| %>
+      <%= render 'shared/error_messages' %>
+
+      <%= f.label :ipaddress %>
+      <%= f.text_field :ipaddress, class: 'form-control' %>
+
+      <%= f.label :nickname %>
+      <%= f.text_field :nickname , class: 'form-control' %>
+      <br>
+      <div class="create-account">
+      <%= f.submit "submit", class: "btn btn-primary sign-up-button" %>
+    </div>
+    <% end %>
   </div>
+</div>
+
 <% end %>
 
 <% end %>
