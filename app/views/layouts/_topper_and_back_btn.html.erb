@@ -4,4 +4,13 @@
   <div class="btn btn-custom">
     <%= link_to "Back", @back_url %>
   </div>
+    <% if current_user %>
+  <div class="welcome-user" >
+      Welcome, <%= User.find(current_user.id).username %>
+  </div>
+    <% else %>
+  <div class="welcome-user">
+      <a href="/login"><i class="fa fa-sign-in white"></i> login </a>
+  </div>
+    <% end %>
 </div>

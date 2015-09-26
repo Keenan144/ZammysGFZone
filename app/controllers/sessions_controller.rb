@@ -21,7 +21,7 @@ class SessionsController < ApplicationController
       views = SystemMetric.first.logins
      SystemMetric.first.update(logins: views + 1)
     else
-      p "!" * 1000
+
       flash.now[:danger] = 'Invalid email/password combination'
       render 'new'
     end
