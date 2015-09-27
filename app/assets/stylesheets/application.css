@@ -109,6 +109,7 @@
 }
 .paginator{
   text-align: center;
+  top: 1000px;
 }
 
 /*.featured-img {
