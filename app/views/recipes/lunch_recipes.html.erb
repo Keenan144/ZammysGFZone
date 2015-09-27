@@ -6,8 +6,8 @@
     <hr>
 <%= render @recipes.order("created_at DESC")%>
 
-<br>
-
   </div>
-<%= will_paginate @recipes %>
+  <div class="paginator">
+    <%= will_paginate @recipes %>
+  </div>
 </section>

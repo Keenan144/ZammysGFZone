@@ -1,37 +1,48 @@
 <!-- paginated recipes -->
 
-<div class="col-md-4">
+<div class="col-md-4 container">
+
   <div class="post-container">
-    <div class="thumbnail">
+
+    <div class="thumbnail recipe-image">
         <a href="/recipes/<%= recipe.id%>">
-          <img src="<%=recipe.image %>" alt="Image not available" class="recipe-image" >
+          <img src="<%=recipe.image %>" alt="Image not available" style="height: 200px" >
         </a>
-      </div>
-      <div class="post-content">
-        <h2><%= recipe.title %></h2>
-        <h5><small><%= self.determine_diff(recipe.difficulty) %> difficulty 
+    </div>
+
+      <div class="post-content recipe">
+        <h2 align="center"><%= recipe.title %></h2>
+        <h5 align="center"><small><%= self.determine_diff(recipe.difficulty) %> difficulty 
         <%= recipe.placement %> recipe</small></h5>
-          <p class="blog-post-content">
+          <p class="">
             <% recipe.steps.first(3).each do |step| %>
             <%= step.step %><br>
             <% end %>
           </p>
+
         <div class="post-link">
             <a href="/recipes/<%= recipe.id%>"><span>See Recipe</span></a>
         </div>
+
       </div>
+
       <div class="post-atribut">
           <div class="row">
+
               <div class="col-md-4 col-sm-4 col-xs-4">
                   <a href="/recipes/<%= recipe.id%>"><span><i class="fa fa-heart"></i>  <%= recipe.votes %></span></a>
               </div>
+
               <div class="col-md-4 col-sm-4 col-xs-4">
                   <a href="/recipes/<%= recipe.id%>"><span><i class="fa fa-comments"></i>  <%= recipe.comments.count %></span></a>
               </div>
+
               <div class="col-md-4 col-sm-4 col-xs-4">
                   <a href="/recipes/<%= recipe.id%>"><span><i class="fa fa-eye"></i>  <%= recipe.views %></span></a>
               </div>
           </div>
       </div>
+
   </div>
+
 </div>

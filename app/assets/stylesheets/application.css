@@ -107,7 +107,9 @@
   background-color: #3B5998;
   color: white;
 }
-
+.paginator{
+  text-align: center;
+}
 
 /*.featured-img {
   max-height: 180px;
