@@ -29,13 +29,3 @@ Difficulty to cook <% food.difficulty.to_i.times do |star| %>
 
 Where I buy it: <%= food.where_to_find %><br>
 Category of food: <%= FoodCategory.find(food.food_category_id).category_name %><br>
-
-<br><br>
-<div
-  class="fb-like"
-  data-share="true"
-  data-width="450"
-  data-show-faces="true">
-</div>
-<hr>
-<br><br>

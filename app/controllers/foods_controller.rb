@@ -19,7 +19,7 @@ class FoodsController < ApplicationController
   end
 
   def breakfast_food_items
-    foods = Food.where(food_category_id: 1)
+    foods = Food.where(food_category_id: [1,6])
     @foods = foods.paginate(page: params[:page], per_page: 6)
   end
 
@@ -28,7 +28,7 @@ class FoodsController < ApplicationController
 
 
   def lunch_food_items
-    foods = Food.where(food_category_id: 2)
+    foods = Food.where(food_category_id: [2,6,7])
     @foods = foods.paginate(page: params[:page], per_page: 6)
   end
 
@@ -37,11 +37,13 @@ class FoodsController < ApplicationController
 
 
   def dinner_food_items
-    foods = Food.where(food_category_id: 3)
+    foods = Food.where(food_category_id: [3,7])
     @foods = foods.paginate(page: params[:page], per_page: 6)
   end
 
   def dinner_snacks
+    foods = Food.where(food_category_id: 5)
+    @foods = foods.paginate(page: params[:page], per_page: 6)
   end
 
   def dessert_food_items
@@ -67,6 +69,22 @@ class FoodsController < ApplicationController
   # POST /foods.json
   def create
     @food = Food.new(food_params)
+
+    if @food.placement == "breakfast"
+          @food.update(food_category_id: 1)
+        elsif @food.placement == "breakfast/lunch"
+          @food.update(food_category_id: 6)
+        elsif @food.placement == "lunch"
+          @food.update(food_category_id: 2)
+        elsif @food.placement == "lunch/dinner"
+          @food.update(food_category_id: 7)
+        elsif @food.placement == "dinner"
+          @food.update(food_category_id: 3)
+        elsif @food.placement == "snacks"
+          @food.update(food_category_id: 4)
+        elsif @food.placement == "dessert"
+          @food.update(food_category_id: 5)
+        end
 
     respond_to do |format|
       if @food.save
@@ -111,7 +129,7 @@ class FoodsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def food_params
-      params[:food].permit(:name, :confirmed_gf, :price, :taste, :difficulty, :where_to_find, :food_category_id)
+      params[:food].permit(:placement, :image, :name, :confirmed_gf, :price, :taste, :difficulty, :where_to_find, :food_category_id)
     end
     
     def save_my_previous_url

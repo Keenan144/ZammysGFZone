@@ -14,8 +14,8 @@
             <%= render @blog_posts.order("created_at DESC")%>
         </div> 
       </div>
-    </section>
     <div class="pager">
         <%= will_paginate @blog_posts %>
     </div>
+    </section>
     <!-- end:content -->
