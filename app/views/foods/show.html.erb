@@ -1,6 +1,27 @@
+<!-- Full Recipe page -->
+
 <%= render "layouts/topper_and_back_btn" %>
-<%= render @food %>
+<section id="content">
+  <div class="container">
 
+    <div class="col-md-6 col-sm-6">
+      <div class="post-container">
 
-<%= link_to 'Edit', edit_food_path(@food) %> |
-<%= link_to 'Back', foods_path %>
+        <div class="post-content no-padding" align="center">
+          <h2><%= @food.name %></h2>
+          <h5><small><%= @food.placement %> Foods</small></h5>
+          <p><%= @food.name.capitalize %> can be purchased at, <%= @food.where_to_find %>. Here in Texas I pay about $<%= @food.price %>. I give it a taste rating of, <%= @food.taste %> out of 5. Difficulty is <%= @food.difficulty %> out of 5, with a rating of 1 being easy and 5 being hard to prepare.</p>        
+        </div>
+
+      </div>
+    </div>
+
+    <div class="col-md-6 col-sm-6">
+      <div class="post-container">
+        <div class="post-content">
+            <img src="<%= @food.image %>" alt="Image not available" ></img>
+        </div>
+      </div>
+    </div>
+
+  </div>

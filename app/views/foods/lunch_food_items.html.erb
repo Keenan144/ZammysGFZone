@@ -1,3 +1,15 @@
 <%= render "layouts/topper_and_back_btn" %>
-<%= render @foods %>
-<%= will_paginate @foods %>
+
+<section id="content">
+  <div class="container">
+    <h2 align="center">Lunch Foods</h2><br>
+    <hr>
+<%= render @foods.order("created_at DESC")%>
+
+<br>
+
+  </div>
+<div class="paginator">
+    <%= will_paginate @foods %>
+  </div>
+</section>

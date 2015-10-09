@@ -2,30 +2,51 @@
 <% food = @food %>
 <% end %>
 
-Name: <%= food.name %><br>
-Confirmed Gluten Free: <%= food.confirmed_gf %><br>
-Price I pay: $<%= food.price %><br>
-Taste rating <% food.taste.to_i.times do |star| %>
-<i class="fa fa-star"></i> 
-<% end %><br>
 
-<% rater = 0 %>
-Difficulty to cook <% food.difficulty.to_i.times do |star| %>
-<% rater += 1 %>
-<i class="fa fa-exclamation"></i> 
-<% end %>
-<% if rater > 4 %>
-<strong><small>Hard</small></strong>
-<% elsif rater == 3 %>
-<strong><small>Medium</small></strong>
-<% elsif rater == 2 %>
-<strong><small>Normal</small></strong>
-<% elsif rater == 1 %>
-<strong><small>Easy</small></strong>
-<% else %>
-<strong><small>Simple</small></strong>
-<% end %>
-<br>
+<!-- paginated foods -->
 
-Where I buy it: <%= food.where_to_find %><br>
-Category of food: <%= FoodCategory.find(food.food_category_id).category_name %><br>
+<div class="col-md-4 container">
+
+  <div class="post-container">
+
+    <div class="thumbnail recipe-image">
+        <a href="/foods/<%= food.id%>">
+          <img src="<%=food.image %>" alt="Image not available" style="height: 200px" >
+        </a>
+    </div>
+
+      <div class="post-content recipe" align="center">
+        <h2 align="center"><%= food.name %></h2>
+        <% food.taste.to_i.times do |star| %>
+        <i class="fa fa-star"></i> 
+        <% end %>
+          <p class="recipe-post-content">
+            description
+          </p>
+      </div>
+
+
+        <div class="post-link recipe-post-link">
+            <a href="/foods/<%= food.id%>"><span>More Info</span></a>
+        </div>
+
+      <div class="post-atribut recipe-atribut">
+          <div class="row">
+
+              <div class="col-md-4 col-sm-4 col-xs-4">
+                  <a href="/foods/<%= food.id%>"><span><i class="fa fa-money" style="color: green"></i>  $<%= food.price%> <small>est.</small></span></a>
+              </div>
+
+              <div class="col-md-4 col-sm-4 col-xs-4">
+                  <a href="/foods/<%= food.id%>"><span><i class="fa fa-comments"></i>  <%= %></span></a>
+              </div>
+
+              <div class="col-md-4 col-sm-4 col-xs-4">
+                  <a href="/foods/<%= food.id%>"><span><i class="fa fa-eye"></i>  <%= food.views%></span></a>
+              </div>
+          </div>
+      </div>
+
+  </div>
+
+</div>
