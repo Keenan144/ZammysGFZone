@@ -8,6 +8,8 @@ before_action :save_my_previous_url
 
   def home
     @blog_posts = BlogPost.paginate(page: params[:page], per_page: 3)
+    recipe = Recipe.order("created_at DESC")
+    @recipes = recipe.paginate(page: params[:page], per_page: 3)
     
     views = SystemMetric.first.site_visits
     SystemMetric.first.update(site_visits: views + 1)

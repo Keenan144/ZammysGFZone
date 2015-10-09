@@ -4,102 +4,108 @@
 <section id="content">
   <div class="container">
 
-  <div class="col-md-6 col-sm-6">
-    <div class="post-container">
+    <div class="col-md-6 col-sm-6">
+      <div class="post-container">
 
-      <div class="post-content no-padding" align="center">
-        <div class="diff-rate">
-          <small><%= self.determine_diff(@recipe.difficulty.to_i) %></small>
+        <div class="post-content no-padding" align="center">
+          <div class="diff-rate">
+            <small><%= self.determine_diff(@recipe.difficulty.to_i) %></small>
 
-          <% @recipe.difficulty.to_i.times do |star| %> 
-              <i class="fa fa-exclamation"></i> 
-          <% end %>
-        </div>
-        <h2><%= @recipe.title %></h2>
-        <h5><small><%= @recipe.placement %> Foods</small></h5>
-        <% if current_user %>
-        <% if like = Like.find_by(recipe_id: @recipe.id, user_id: current_user.id) %>
-
-            <% if like.bool == true %>
-              <div class="btn btn-success">
-                You Like This
-              </div>
-
-              <%= link_to 'Dislike', downvote_recipe_path(@recipe), method: :post, class: "btn btn-danger" %>
-
-            <% elsif like.bool == false %>
-              <div class="btn btn-danger">
-                You Dislike This
-              </div>
-
-              <%= link_to 'Like', upvote_recipe_path(@recipe), method: :post, class: "btn btn-success" %>
-
+            <% @recipe.difficulty.to_i.times do |star| %> 
+                <i class="fa fa-exclamation"></i> 
             <% end %>
-
-          <% else %>
-        <div class="voters">
-          <%= link_to '+1', upvote_recipe_path(@recipe), method: :post, class: "btn btn-success" %>
-          <%= link_to '-1', downvote_recipe_path(@recipe), method: :post, class: "btn btn-danger" %>
-        </div>
-          <% end %>
-          <div>
-            <small><%= self.rate(@recipe) %></small>
           </div>
-        <% else %>
-        <div class="voters">
-          <p align="center">To rate, please log in <a href="/login">here</a>.</p>
+
+          <h2><%= @recipe.title %></h2>
+          <h5><small><%= @recipe.placement %> Foods</small></h5>
+          <% if current_user %>
+            <% if like = Like.find_by(recipe_id: @recipe.id, user_id: current_user.id) %>
+
+              <% if like.bool == true %>
+                <div class="btn btn-success">
+                  You Like This
+                </div>
+
+                <%= link_to 'Dislike', downvote_recipe_path(@recipe), method: :post, class: "btn btn-danger" %>
+              <% elsif like.bool == false %>
+                <div class="btn btn-danger">
+                  You Dislike This
+                </div>
+
+                <%= link_to 'Like', upvote_recipe_path(@recipe), method: :post, class: "btn btn-success" %>
+              <% end %>
+
+            <% else %>
+          <div class="voters">
+            <%= link_to '+1', upvote_recipe_path(@recipe), method: :post, class: "btn btn-success" %>
+            <%= link_to '-1', downvote_recipe_path(@recipe), method: :post, class: "btn btn-danger" %>
+          </div>
+            <% end %>
+            <div>
+
+              <small><%= self.rate(@recipe) %></small>
+            </div>
+          <% else %>
+          <div class="voters">
+
+            <p align="center">To rate, please log in <a href="/login">here</a>.</p>
+          </div>
+          <% end %>
         </div>
-        <% end %>
-      </div>
 
 
-    <div class="post-content">
-      <p class="content">
-        <h5 align="center">Ingredients</h5>
-          <% @recipe.ingredients.order(:id).each do |ingredient| %>
-          <p class="single-step"><small><%= ingredient.amount %> <%= ingredient.name %></small>
+        <div class="post-content">
+          <p class="content">
+            <h5 align="center">Ingredients</h5>
+              <% @recipe.ingredients.order(:id).each do |ingredient| %>
+                <p class="single-step">
+                  <small>
+                    <%= ingredient.amount %> <%= ingredient.name %>
+                  </small>
+                  <% if current_admin %>
+                    <%= link_to 'Edit', edit_ingredient_path(ingredient) %>
+                  <% end %>
+                 </p>
+              <% end %>
+
+            <hr>
+            <h5 align="center">Steps</h5>
+              <% counter = 1 %>
+              <% @recipe.steps.order(:id).each do |step| %>
+                <p class="single-step"> <%= counter %>) <%= step.step %>
+                <% counter += 1 %>
+                <% if current_admin %>
+                    <%= link_to 'Edit', edit_step_path(step) %>
+                <% end %>
+                </p>
+              <% end %>
+
             <% if current_admin %>
-                <%= link_to 'Edit', edit_ingredient_path(ingredient) %>
+                <%= link_to 'Edit', edit_recipe_path(@recipe) %> |
+                <%= link_to 'Back', recipes_path %>
             <% end %>
           </p>
-          <% end %>
+        </div>
 
-        <hr>
-        <h5 align="center">Steps</h5>
-        <% counter = 1 %>
-        <% @recipe.steps.order(:id).each do |step| %>
-        <p class="single-step"> <%= counter %>) <%= step.step %>
-          <% counter += 1 %>
-          <% if current_admin %>
-              <%= link_to 'Edit', edit_step_path(step) %>
-          <% end %>
-        </p>
-        <% end %>
+      </div>
+    </div>
 
-        <% if current_admin %>
-            <%= link_to 'Edit', edit_recipe_path(@recipe) %> |
-            <%= link_to 'Back', recipes_path %>
-        <% end %>
-
+    <div class="col-md-6 col-sm-6">
+      <div class="post-container">
+        <div class="post-content">
+            <img src="<%= @recipe.image %>" alt="Image not available" ></img>
         </div>
       </div>
     </div>
 
-  <div class="col-md-6 col-sm-6">
-    <div class="post-container">
-      <div class="post-content">
-          <img src="<%= @recipe.image %>" alt="Image not available" >
-      </div>
-    </div>
   </div>
-</div>
-</section>
 
 <h3 align="center">Top Comments</h3>
-<div class="comments-area">
-  <%= render @comments.order("created_at DESC")%>
-  <%= will_paginate @comments %>
-</div>
-<div class="make-comment">
-  <%= render "comments/form"%>
-</div>
+  <div class="comments-area">
+    <%= render @comments.order("created_at DESC")%>
+    <%= will_paginate @comments %>
+  </div>
+  <div class="make-comment">
+    <%= render "comments/form"%>
+  </div>
+</section>

@@ -7,14 +7,14 @@
         <div class="col-md-8 col-sm-8">
 
 
-      <div class="col-md-4 col-sm-4">
+          <div class="col-md-4 col-sm-4">
         <div class="featured-container">
           <div class="featured-img">
             <img class="feat-img" src="img/FullSizeRender.jpg" alt="">
             <h3><a href="/lunch">Zambrina</a></h3>
           </div>
         </div>
-      </div>
+          </div>
   
         <br>
             <p> Hello I am Zambrina, but you can call me Zam.  With help from my son, I have started this blog to help the gluten free community.  When my son was diagnosed with Celiac Disease several years ago, I was nervous about how to cook yummy food for him while avoiding gluten.</p><br><p> Over the years I've found, via trial and error, different ways to add flavor and fun to gluten free meals while on a budget and using ingredients commonly found in my pantry.  My goal is to share with you some of these recipes as well as some wonderful Gluten Free items I've found.  And maybe you can share this with your friends or loved ones who may need it, so that together we can <strong>share</strong> - <strong>love</strong> - and <strong>eat</strong>.</p>
@@ -28,31 +28,23 @@
 
         <!-- begin:sidebar -->
         <div class="col-md-4 col-sm-4 sidebar">
-<!--             <div class="widget-sidebar">
-                <h3>Search</h3>
-                <form id="search" class="navbar-form search" role="search">
-                    <input type="search" class="form-control input-lg" placeholder="Type your keyword">
-                    <button type="submit" class="btn btn-danish btn-search"><i class="fa fa-arrow-right"></i></button>
-                </form>
-            </div> -->
-
-            <div class="widget-sidebar">
-              <h3>Categories</h3>
-              <ul>
-                <li><%= link_to 'Blog Posts', blog_posts_path%></li>
-                <li><%= link_to 'Food Categories', food_categories_path%></li>
-                <li><%= link_to 'Foods', foods_path%></li>
-                <% if current_user == nil %>
-                <li><a href="/login"><i class="fa fa-sign-in"></i> Login</a>
-                <% else %>
-                <li><%= link_to 'Profile', user_path(current_user) %></li>
-                  <% if current_user.admin == "125905" %>
-                  <li><a href="/admin"><i class="fa fa-book"></i> Admin</a></li>
-                  <% end %>
-                </li>
+          <div class="widget-sidebar">
+            <h3>Categories</h3>
+            <ul>
+              <li><%= link_to 'Blog Posts', blog_posts_path%></li>
+              <li><%= link_to 'Food Categories', food_categories_path%></li>
+              <li><%= link_to 'Foods', foods_path%></li>
+              <% if current_user == nil %>
+              <li><a href="/login"><i class="fa fa-sign-in"></i> Login</a>
+              <% else %>
+              <li><%= link_to 'Profile', user_path(current_user) %></li>
+                <% if current_user.admin == "125905" %>
+                <li><a href="/admin"><i class="fa fa-book"></i> Admin</a></li>
                 <% end %>
-              </ul>
-            </div>
+              </li>
+              <% end %>
+            </ul>
+          </div>
 
             <div class="widget-sidebar">
               <h3>Archives</h3>
