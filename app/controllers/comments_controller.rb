@@ -63,13 +63,15 @@ class CommentsController < ApplicationController
   # DELETE /comments/1.json
   def destroy
     @comment.destroy
-    sync_destroy @comment
     respond_to do |format|
       if @comment.blog_post_id != nil
           format.html { redirect_to blog_post_url(@comment.blog_post_id), notice: 'Comment was successfully destroyed.'  }
           format.json { head :no_content }
         elsif @comment.user_post_id != nil 
           format.html { redirect_to user_post_url(@comment.user_post_id), notice: 'Comment was successfully destroyed.'  }
+          format.json { head :no_content }
+        elsif @comment.recipe_id != nil 
+          format.html { redirect_to recipe_url(@comment.recipe_id), notice: 'Comment was successfully destroyed.'  }
           format.json { head :no_content }
         end
     end

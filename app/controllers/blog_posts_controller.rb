@@ -1,7 +1,6 @@
 class BlogPostsController < ApplicationController
   before_action :set_blog_post, only: [:show, :edit, :update, :destroy]
   before_action :save_my_previous_url 
-  enable_sync only: [:create, :update, :destroy]
 
   # GET /blog_posts
   # GET /blog_posts.json
