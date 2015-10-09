@@ -6,6 +6,11 @@ class Comment < ActiveRecord::Base
   has_many :replys
   has_many :likes
 
+  sync :all
+
+  sync_scope :active, -> { where(completed: false) }
+  sync_scope :completed, -> { where(completed: true) }
+
   validates :comment, presence: true
   validates :user_id, presence: true
   

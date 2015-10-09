@@ -87,6 +87,7 @@ GEM
       activesupport (>= 4.1.0)
     hashie (3.4.2)
     http_parser.rb (0.6.0)
+    httpclient (2.6.0.1)
     i18n (0.7.0)
     jbuilder (2.3.1)
       activesupport (>= 3.0.0, < 5)
@@ -128,6 +129,11 @@ GEM
       oauth2 (~> 1.0)
       omniauth (~> 1.2)
     pg (0.18.2)
+    pusher (0.14.6)
+      httpclient (~> 2.5)
+      multi_json (~> 1.0)
+      pusher-signature (~> 0.1.8)
+    pusher-signature (0.1.8)
     rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -217,6 +223,7 @@ DEPENDENCIES
   koala (~> 1.10.0rc)
   omniauth-facebook
   pg
+  pusher
   rails (= 4.2.1)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)

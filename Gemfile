@@ -18,6 +18,9 @@ gem 'faye'
 gem 'thin'
 gem 'sync'
 
+gem 'pusher'
+
+
 # Facebook authentication
 gem 'omniauth-facebook' 
 

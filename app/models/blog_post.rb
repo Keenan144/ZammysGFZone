@@ -8,6 +8,12 @@ class BlogPost < ActiveRecord::Base
   has_many :recipes
   has_many :likes
 
+  sync :all
+
+  sync_scope :active, -> { where(completed: false) }
+  sync_scope :completed, -> { where(completed: true) }
+
+
   validates :title, presence: true, uniqueness: true
   validates :blog_content, presence: true
 end
