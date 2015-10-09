@@ -92,6 +92,7 @@ class BlogPostsController < ApplicationController
   def update
     respond_to do |format|
       if @blog_post.update(blog_post_params)
+        sync_update @blog_post
         format.html { redirect_to @blog_post, notice: 'Blog post was successfully updated.' }
         format.json { render :show, status: :ok, location: @blog_post }
       else

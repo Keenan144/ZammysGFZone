@@ -96,9 +96,15 @@
 <br><br>
 <h3 align="center">Top Comments</h3>
 
+<!-- <div class="comments-area">
+  <% render @comments.order("created_at DESC")%>
+  <% will_paginate @comments %>
+</div> -->
+
 <div class="comments-area">
-  <%= render @comments.order("created_at DESC")%>
-  <%= will_paginate @comments %>
+  <% @blog_post.comments.order("created_at DESC").each do |comment| %>
+    <%= sync partial: 'comment', resource: comment %>
+  <% end %>
 </div>
 
 <div class="make-comment">

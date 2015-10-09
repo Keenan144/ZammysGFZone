@@ -12,6 +12,12 @@ gem 'figaro'
 
 gem 'json'
 
+# real time syncs
+
+gem 'faye'
+gem 'thin'
+gem 'sync'
+
 # Facebook authentication
 gem 'omniauth-facebook' 
 

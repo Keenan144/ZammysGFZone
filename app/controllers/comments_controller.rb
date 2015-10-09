@@ -28,6 +28,7 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       if @comment.save
+        sync_update @comment
         if @comment.blog_post_id != nil
           format.html { redirect_to blog_post_url(@comment.blog_post_id), notice: 'Comment was successfully created.' }
           format.json { render :show, status: :created, location: @comment }
@@ -50,6 +51,7 @@ class CommentsController < ApplicationController
   def update
     respond_to do |format|
       if @comment.update(comment_params)
+        sync_update @comment
         format.html { redirect_to @comment, notice: 'Comment was successfully updated.' }
         format.json { render :show, status: :ok, location: @comment }
       else
@@ -63,6 +65,7 @@ class CommentsController < ApplicationController
   # DELETE /comments/1.json
   def destroy
     @comment.destroy
+    sync_destroy @comment
     respond_to do |format|
       if @comment.blog_post_id != nil
           format.html { redirect_to blog_post_url(@comment.blog_post_id), notice: 'Comment was successfully destroyed.'  }

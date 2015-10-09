@@ -22,5 +22,6 @@
 //= require jquery.isotope.min
 //= require gmap3.min
 //= require imagesloaded.pkgd.min
+//= require sync
 
 
