@@ -1,6 +1,5 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
-  enable_sync only: [:show, :create, :update, :destroy]
 
   # GET /comments
   # GET /comments.json
@@ -29,7 +28,6 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       if @comment.save
-        sync_update @comment
         if @comment.blog_post_id != nil
           format.html { redirect_to blog_post_url(@comment.blog_post_id), notice: 'Comment was successfully created.' }
           format.json { render :show, status: :created, location: @comment }
@@ -52,7 +50,6 @@ class CommentsController < ApplicationController
   def update
     respond_to do |format|
       if @comment.update(comment_params)
-        sync_update @comment
         format.html { redirect_to @comment, notice: 'Comment was successfully updated.' }
         format.json { render :show, status: :ok, location: @comment }
       else

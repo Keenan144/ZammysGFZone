@@ -2,12 +2,12 @@
 
 <%= form_for(@comment) do |f| %>
 
-<div class="row white-text">
-  <div class="col-md-6 col-md-offset-3">
+<div class="container white-text">
+  <div align="center">
       <%= render 'shared/error_messages' %>
       <% if current_user != nil %>
 
-      <%= f.label :comment %>
+      <% f.label :comment %>
       <%= f.text_area :comment, cols: "97", rows: "5" %>
       <br>
 
@@ -29,7 +29,7 @@
 
 
 
-    <div class="create-comment-div">
+    <div class="create-comment-div" align="center">
       <%= f.submit "comment", class: "btn btn-info create-comment" %>
     </div>
       <% else %>
