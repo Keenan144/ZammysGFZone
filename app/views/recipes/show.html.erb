@@ -42,7 +42,11 @@
             </div>
           <% else %>
           <div class="voters">
-            <p align="center">To rate, please log in <a href="/login">here</a>.</p>
+            <p align="center">To rate, please log in 
+            <%= link_to 'here', login_path %>
+            .
+            </p>
+
           </div>
 
           <% end %>
