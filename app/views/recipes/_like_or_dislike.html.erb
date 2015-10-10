@@ -1,0 +1,4 @@
+<div class="voters">
+  <%= link_to '+1', upvote_recipe_path(@recipe), method: :post, class: "btn btn-success voteup" %>
+  <%= link_to '-1', downvote_recipe_path(@recipe), method: :post, class: "btn btn-danger votedown" %>
+</div>

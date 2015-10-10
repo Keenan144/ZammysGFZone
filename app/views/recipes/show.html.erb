@@ -10,7 +10,6 @@
         <div class="post-content no-padding" align="center">
           <div class="diff-rate">
             <small><%= self.determine_diff(@recipe.difficulty.to_i) %></small>
-
             <% @recipe.difficulty.to_i.times do |star| %> 
                 <i class="fa fa-exclamation"></i> 
             <% end %>
@@ -18,38 +17,34 @@
 
           <h2><%= @recipe.title %></h2>
           <h5><small><%= @recipe.placement %> Foods</small></h5>
+
           <% if current_user %>
-            <% if like = Like.find_by(recipe_id: @recipe.id, user_id: current_user.id) %>
 
-              <% if like.bool == true %>
-                <div class="btn btn-success">
-                  You Like This
+              <% if like = Like.find_by(recipe_id: @recipe.id, user_id: current_user.id) %>
+                <div id="vote">
                 </div>
 
-                <%= link_to 'Dislike', downvote_recipe_path(@recipe), method: :post, class: "btn btn-danger" %>
-              <% elsif like.bool == false %>
-                <div class="btn btn-danger">
-                  You Dislike This
+                <div id="voters">
+                  <% if like.bool == true %>
+                    <%= render 'recipes/liked' %>
+                  <% elsif like.bool == false %>
+                    <%= render 'recipes/disliked' %>
+                  <% end %>
                 </div>
-
-                <%= link_to 'Like', upvote_recipe_path(@recipe), method: :post, class: "btn btn-success" %>
+              <% else %>
+              <div id="newt-vote">
+                <%= render 'recipes/like_or_dislike' %>
+              </div>
               <% end %>
 
-            <% else %>
-          <div class="voters">
-            <%= link_to '+1', upvote_recipe_path(@recipe), method: :post, class: "btn btn-success" %>
-            <%= link_to '-1', downvote_recipe_path(@recipe), method: :post, class: "btn btn-danger" %>
-          </div>
-            <% end %>
             <div>
-
               <small><%= self.rate(@recipe) %></small>
             </div>
           <% else %>
           <div class="voters">
-
             <p align="center">To rate, please log in <a href="/login">here</a>.</p>
           </div>
+
           <% end %>
         </div>
 

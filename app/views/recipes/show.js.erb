@@ -1,0 +1,13 @@
+
+$("#vote").html("")
+<% if like = Like.find_by(recipe_id: @recipe.id, user_id: current_user.id) %>
+  <% if like.bool == true %>
+    $("#vote").html("<%= escape_javascript(render 'recipes/liked') %>")
+  <% elsif like.bool == false %>
+    $("#vote").html("<%= escape_javascript(render 'recipes/disliked') %>")
+ <% end %>
+<% else %>
+  $("#vote").html("<%= escape_javascript(render 'recipes/like_or_dislike') %>")
+<% end %>
+$('#voters').hide()
+

@@ -1,0 +1,5 @@
+<div class="btn btn-success">
+  You Like This
+</div>
+
+<%= link_to 'Dislike', downvote_recipe_path(@recipe), remote: true, method: :post, class: "btn btn-danger votedown" %>
