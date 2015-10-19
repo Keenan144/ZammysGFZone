@@ -27,6 +27,8 @@ gem 'omniauth-facebook'
 # Facebook API
 gem "koala", "~> 1.10.0rc" 
 
+# pagination
+
 gem 'will_paginate',           '3.0.7'
 gem 'bootstrap-will_paginate', '0.0.10'
 
